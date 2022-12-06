@@ -22,13 +22,13 @@ This repository contains :
 
 You can clone this repository into your own work directory (using git) 
 ```
-git remote add origin https://github.com/jvillemejane/SupOpToolboxes.git
+git clone https://github.com/jvillemejane/SupOpToolboxes.git
 ```
 
 or
 
 ```
-git remote add origin git@github.com:jvillemejane/SupOpToolboxes.git
+git clone git@github.com:jvillemejane/SupOpToolboxes.git
 ```
 
 ## How To Use
