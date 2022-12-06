@@ -7,9 +7,16 @@
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Installation](#installation)
-2. [How To Use]
+3. [How To Use](#how-to-use)
 4. [Collaboration](#collaboration)
 5. [FAQs](#faqs)
 
 ## General Info
 
+## Installation
+
+## How To Use
+
+## Collaboration
+
+## FAQs
