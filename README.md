@@ -4,6 +4,8 @@
 
 *Developed by Institut d'Optique Graduate School / France*
 
+This project is still **in development**. To contribute, look at the *Collaboration* section.
+
 ## Table of Contents
 1. [General Info](#general-info)
 2. [Installation](#installation)
