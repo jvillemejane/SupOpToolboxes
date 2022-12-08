@@ -1,0 +1,328 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Engineering problems / LaTeX Template
+%		Semester 5
+%		Institut d'Optique Graduate School
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	EngPb_01	/ Global Physicist	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Created by:
+%	Julien VILLEMEJANE - 08/dec/2022
+% Modified by:
+%	
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Professional Newsletter Template
+% LaTeX Template
+% Version 1.0 (09/03/14)
+%
+% Created by:
+% Bob Kerstetter (https://www.tug.org/texshowcase/) and extensively modified by:
+% Vel (vel@latextemplates.com)
+% 
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt]{article} % The default font size is 10pt; 11pt and 12pt are alternatives
+
+\input{assets/structure.tex} % Include the document which specifies all packages and structural customizations for this template
+
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATIONS
+%----------------------------------------------------------------------------------------
+\def\module{Data Processing\\ Problems}
+\def\submodule{Numerical Tools}
+\def\moduleSmall{5N-027-SCI / DPP\_NT}
+\def\year{2023-2024}
+\def\problem{DPP\_Pb\_S5\_01}
+\def\problemName{Displaying scientific data}
+
+\def\validation{10\%}
+
+\def\scheduleCM{0}
+\def\scheduleTD{0}
+\def\scheduleTDcomputer{1}
+\def\scheduleTP{0}
+
+\def\workingTeam{team of 2}
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER IMAGE
+%----------------------------------------------------------------------------------------
+
+\begin{figure}[H]
+\centering\includegraphics[width=0.5\linewidth]{assets/logo.png}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SIDEBAR - FIRST PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{.35\linewidth} % Mini page taking up 30% of the actual page
+\begin{mdframed}[style=sidebar,frametitle={}] % Sidebar box
+
+%-----------------------------------------------------------
+%	DOCUMENT DESCRIPTION
+\begin{center}
+\textbf{\Large \module}
+
+\textit{\centering \year}
+\end{center}
+
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+\begin{center}
+	\textit{\large \moduleSmall}
+\end{center}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+\begin{center}
+	\textbf{\large \problem} ( \validation )
+\end{center}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\begin{itemize}
+\item \hyperlink{context}{Context} % These link to their appropriate sections in the newsletter
+\item \hyperlink{ilos}{Intended Learning Outcomes}
+\item \hyperlink{deliverables}{Deliverables}
+\item \hyperlink{coveredconcepts}{Covered Concepts}
+\item \hyperlink{stepbystep}{Step by step}
+\item \hyperlink{ressources}{Ressources}
+\end{itemize}
+
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\textbf{Keywords}
+
+Data Processing ; 
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\textbf{Sessions}
+
+\begin{itemize}
+\item[\textbf{\scheduleCM}] Course(s) - 1h30
+\item[\textbf{\scheduleTD}] Directed Session(s) - 1h30
+\item[\textbf{\scheduleTDcomputer}] Computer Session(s) - 2h00
+\item[\textbf{\scheduleTP}] Practical Session(s) - 4h30
+\end{itemize}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+{\large Working by \textbf{\workingTeam}}
+
+
+%-----------------------------------------------------------
+
+\end{mdframed}
+
+
+\centering
+\begin{minipage}[t]{.95\linewidth}
+\textbf{Institut d'Optique}\\
+Graduate School, \textit{France}\\
+\href{https://www.institutoptique.fr}{https://www.institutoptique.fr}
+\end{minipage}
+
+\end{minipage}\hfill % End the sidebar mini page 
+%
+%----------------------------------------------------------------------------------------
+%	MAIN BODY - FIRST PAGE
+%----------------------------------------------------------------------------------------
+%
+\begin{minipage}[t]{.60\linewidth} % Mini page taking up 66% of the actual page
+
+\hypertarget{context}{\heading{\huge \problemName}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+%% Short introduction 
+
+Producing \textbf{scientific reports} with \textbf{smooth and clear graphics} is a large part of the life of an engineer or a researcher.
+
+In this session, you will have to : 
+\begin{itemize}
+	\item generate discrete sinewaves at different frequencies - from a period (or frequency), a number of periods and a sampling frequency 
+	\item plot those signals depending on a time vector (or different time vectors)
+	\item fill the legend, the axis labels of the graphics	
+\end{itemize}
+
+%%
+
+\bigskip
+
+%----------------------------------------------------------------------------------------
+%	IN-TEXT BOX / Intended learning outcomes
+%----------------------------------------------------------------------------------------
+
+\begin{mdframed}[style=intextbox,frametitle={}] % Sidebar box
+
+
+\hypertarget{ilos}{\heading{Intended Learning Outcomes}{0pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+By solving this problem, students will be able to :
+\begin{enumerate}
+\item \textbf{translate a mathematical function} into a programming function
+\item \textbf{produce scientific smooth and clear graphics} from a mathematical function - including titles, legends and axis labels - with \textit{Matploblib.pyplot} Python library
+\end{enumerate}
+
+\end{mdframed}
+\medskip
+
+%----------------------------------------------------------------------------------------
+%	IN-TEXT BOX / Deliverables
+%----------------------------------------------------------------------------------------
+
+\begin{mdframed}[style=intextbox,frametitle={}] % Sidebar box
+
+
+\hypertarget{deliverables}{\heading{Deliverables}{0pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+At the end of the session, you have to produce :
+\begin{enumerate}
+\item \textbf{commented functions} to generate specific signals (such as a sinewave) from a time vector or other parameters (sampling frequency, frequency of the signal, number of periods)
+\item graphics with titles, legends and axis labels
+\end{enumerate}
+
+\end{mdframed}
+
+
+%\begin{wrapfigure}[7]{l}[0pt]{0pt} % In-line figure with text wrapping around it
+%\includegraphics[width=0.3\textwidth]{engPb_S5_01/placeholder.jpg}
+%\end{wrapfigure}
+
+\end{minipage} % End the main body - first page mini page
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY - SECOND PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{.66\linewidth} % Mini page taking up 66% of the actual page
+
+
+
+%-----------------------------------------------------------
+
+\hypertarget{coveredconcepts}{\heading{Covered Concepts}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+This session refers to :
+
+\begin{itemize}
+	\item mathematical trigonometric functions
+	\item vectors for data storage
+	\item Python libraries for data displaying
+\end{itemize}
+
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\hypertarget{stepbystep}{\heading{Step by step}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+During this session, you can follow the steps below :
+
+\begin{enumerate}
+	\item open a new Jupyter Notebook script (or basic python script)
+	\item 
+\end{enumerate}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\hypertarget{ressources}{\heading{Ressources}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+This session is based on Python programming language.
+
+You can use the \textbf{JupyterHub@Paris-Saclay} environment - 
+\href{https://jupyterhub.ijclab.in2p3.fr/}{https://jupyterhub.ijclab.in2p3.fr/} or \textbf{Spyder} development environment from \textit{Anaconda}.
+
+You will find tutorials on Python (and basics library as Numpy, Matplotlib or Scipy) at : \href{http://lense.institutoptique.fr/python/}{http://lense.institutoptique.fr/python/}, we suggest to you to read the following ones :
+
+\begin{itemize}
+	\item How to create a function properly (with documented comments)
+	\item How to create a vector (linear or logarithm evolution)
+	\item How to plot data from vectors 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage}\hfill % End of the main body - second page mini page
+\begin{minipage}[t]{.30\linewidth} % Mini page taking up 30% of the actual page
+
+%----------------------------------------------------------------------------------------
+%	SIDEBAR - SECOND PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{mdframed}[style=sidebar,frametitle={}] % Sidebar box
+
+\heading{Numerical Tools}{0pt}
+
+Functions and libraries to use :
+
+\begin{itemize}
+	\item \textbf{Numpy} for mathematical functions and vectors generation :
+	\begin{itemize}
+		\item \textbf{linspace}
+		\item \textbf{logspace}	
+	\end{itemize}
+	\item \textbf{Matplotlib} for plotting data
+	\begin{itemize}
+		\item \textbf{plotly} sublibrary
+		\item \textbf{figure}
+		\item \textbf{plot}
+		\item \textbf{legend}	
+		\item \textbf{xlabel, ylabel}	
+		\item \textbf{title}
+		\item \textbf{show}	
+	\end{itemize}	
+	\item \textbf{Scipy} for scientific functions
+	\begin{itemize}
+		\item \textbf{fftpack} sublibrary
+		\item \textbf{fft}
+	\end{itemize}
+\end{itemize}
+
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+
+Advanced tools :
+
+\begin{itemize}
+	\item \textbf{rcParams} from MatPlotLib.pyplot	
+	\item \textbf{Scipy} for scientific functions
+	\begin{itemize}
+		\item \textbf{special} sublibrary
+		\item \textbf{jv} Bessel function 
+	\end{itemize}
+\end{itemize}
+
+\end{mdframed}\hfill
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % End of the sidebar mini page
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 

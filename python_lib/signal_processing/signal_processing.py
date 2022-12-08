@@ -12,26 +12,43 @@ import numpy as np
 
 
 def test_signal():
-    """ test_signal displays OK and returns 0.
-    
-    This function is here to test the integration of libraries in a python application.
-    
-    :return: 0 without any condition
-    """ 
+    """
+    test the integration of libraries in a python application.
+
+    Returns
+    -------
+    int
+        0 without any condition.
+
+    """
     print('OK')
     return 0
     
 
 
 def generate_sinus_freq(f, Fe, nb_per):
-    """ generate_sinus_freq generates Sine Waveform from 
-    {frequency, sampling frequency,period number}
-    
-    :f: frequency of the signal
-    :Fe: sampling frequency
-    :nb_per: number of periods of the signal
-    :return: time vector, signal vector
     """
+    Generates Sine Waveform from 
+    {frequency, sampling frequency,period number}
+
+    Parameters
+    ----------
+    f : double
+        frequency of the signal
+    Fe : double
+        sampling frequency.
+    nb_per : integer
+        number of periods of the signal.
+
+    Returns
+    -------
+    t : 1-dimension vector - double
+        time vector.
+    signal : 1-dimension vector - double
+        signal vector.
+
+    """
+
     final_time = nb_per * 1/f
     samples = int(nb_per * Fe/f)
     t = np.linspace(0, final_time, samples)
@@ -39,25 +56,46 @@ def generate_sinus_freq(f, Fe, nb_per):
     return t, signal
 
 def generate_sinus_time(f, time):
-    """ generate_sinus_time generates Sine Waveform from 
+    """
+    Generates Sine Waveform from 
     {frequency, time vector}
-    
-    :f: frequency of the signal
-    :time: time vector
-    :return: signal vector
+
+    Parameters
+    ----------
+    f : double
+        frequency of the signal.
+    time : 1-dimension vector - double
+        time vector.
+
+    Returns
+    -------
+    signal : 1-dimension vector - double
+        signal vector.
+
     """
     signal = np.sin(f * 2 * np.pi * time)
     return signal
 
 
 def calculate_FFT_1D(signal, Fe):
-    """ calculate_FFT_1D calculates FFT from 
+    """
+    Calculates FFT from 
     {signal vector, sampling frequency}
-    need fftpack from Scipy Lib
-    
-    :signal: signal vector to calculate the FFT
-    :Fe: sampling frequency
-    :return: frequency vector, complex Fourier Transform vector
+
+    Parameters
+    ----------
+    signal : 1-dimension vector - double
+        signal vector to calculate the FFT.
+    Fe : double
+        sampling frequency.
+
+    Returns
+    -------
+    freq : 1-dimension vector - double
+        frequency vector.
+    TF : 1-dimension vector - complex
+        complex Fourier Transform vector.
+
     """
     TF = fftpack.fft(signal)/len(signal)
     freq = fftpack.fftfreq(len(signal)) * Fe
