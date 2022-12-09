@@ -43,20 +43,15 @@ unique_products = np.sort(df_lang_activity['main_dev'].unique())
 print(unique_products)
 # For each type, count the number of each product
 
-for k_activity in unique_activity:
-    for k_product in unique_products:
-        nb = df_lang_activity.loc[(df_lang_activity['main_activity'] == k_activity)
-                                  & (df_lang_activity['main_dev'] == k_product)
-                                  , 'main_dev'].count()
-        print(nb)
-
-
+    
 kk = df_lang_activity.groupby(['main_activity']).count().sort_values(                                      
                     ['main_dev'], ascending=False).rename(
                         columns={"Product" : "Number"}).reset_index()   
 print(kk)
 
 '''
+NOT TERMINATED
+
 plt.figure()
 df_lang_activity.plot()
 plt.show()
