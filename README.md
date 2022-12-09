@@ -32,6 +32,8 @@ This repository contains :
 
 - **Python Libraries** for physicists (*python_lib* directory)
 - **Python Examples** for physicists (*python_examples* directory)
+- **Embedded Librairies** for embedded systems development (Arduino, STM32 MBED, STM32 HAL...)
+- **Engineers and Physicits Courses and Problems** (engineers training)
 
 ## Installation
 
