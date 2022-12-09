@@ -35,7 +35,8 @@ This repository contains :
 
 ## Installation
 
-You can clone this repository into your own work directory (using git) 
+You can **clone** this repository into your own work directory (using git) :
+
 ```
 git clone https://github.com/jvillemejane/SupOpToolboxes.git
 ```
@@ -45,6 +46,8 @@ or
 ```
 git clone git@github.com:jvillemejane/SupOpToolboxes.git
 ```
+
+If you're not familiar to Git repository, you can also **download** the [archived file - zip](https://github.com/jvillemejane/SupOpToolboxes/archive/refs/heads/main.zip) of the repository.
 
 ## How To Use
 
