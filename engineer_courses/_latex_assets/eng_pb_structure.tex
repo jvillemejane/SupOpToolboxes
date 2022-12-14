@@ -97,11 +97,12 @@
     innerrightmargin=10pt, % Right margin
     innerleftmargin=10pt, % Left margin
     backgroundcolor=white, % Box background color
-    frametitlebackgroundcolor=white, % Title background color
+    frametitlealignment=\centering,
+    frametitlebackgroundcolor=gray!20, % Title background color
     frametitlerule=false, % Title rule - true or false
     frametitlerulecolor=white, % Title rule color
     frametitlerulewidth=0.5pt, % Title rule width
-    frametitlefont=\Large, % Title heading font specification
+    frametitlefont=\Large\bfseries, % Title heading font specification
     font=\small
 }
 
@@ -114,11 +115,29 @@
     innerrightmargin=7pt, % Right margin
     innerleftmargin=7pt, % Left margin
     backgroundcolor=white, % Box background color
-    frametitlebackgroundcolor=white, % Title background color
+    frametitlealignment=\centering,
+    frametitlebackgroundcolor=gray!20, % Title background color
     frametitlerule=false, % Title rule - true or false
     frametitlerulecolor=white, % Title rule color
     frametitlerulewidth=0.5pt, % Title rule width
-    frametitlefont=\Large % Title heading font specification
+    frametitlefont=\Large\bfseries % Title heading font specification
+}
+
+\mdfdefinestyle{aavbox}{
+    linecolor=black, % Outer line color
+    outerlinewidth=0.2pt, % Outer line width
+    roundcorner=5pt, % Amount of corner rounding
+    innertopmargin=7pt, % Top margin
+    innerbottommargin=7pt, % Bottom margin
+    innerrightmargin=7pt, % Right margin
+    innerleftmargin=7pt, % Left margin
+    backgroundcolor=gray!10, % Box background color
+    frametitlealignment=\centering,
+    frametitlebackgroundcolor=gray!30, % Title background color
+    frametitlerule=false, % Title rule - true or false
+    frametitlerulecolor=white, % Title rule color
+    frametitlerulewidth=0.2pt, % Title rule width
+    frametitlefont=\Large\bfseries % Title heading font specification
 }
 
 %----------------------------------------------------------------------------------------
