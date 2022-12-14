@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Signal Processing simple examples
+Signal Processing / Noise generation and spectral analysis
 
 Author : Julien VILLEMEJANE
 Laboratoire d Enseignement Experimental - Institut d Optique Graduate School
-Version : 1.0 - 2022-12-01
+Version : 1.0 - 2022-12-14
 """
 
-from signal_processing import *
+from signal_processing import generate_sinus_freq, calculate_FFT_1D, generate_noise, generate_sinus_time
 import matplotlib.pyplot as plt
+import numpy as np
 
-test_signal()
 
 ## Generate sine waveforms
 t, sine = generate_sinus_freq(100, 1e4, 10)
@@ -30,37 +30,40 @@ plt.plot(f, np.abs(tf_sine))
 plt.title('Fourier Transform of the initial signal')
 plt.show()
 
-# Generate modulation carrier sine
-carrier = generate_sinus_time(2000, t)
-am_sig = carrier * signal
+## Generate noise
+noise = generate_noise(len(signal))
+A_noise = 5.0
+noise_sig = signal + A_noise * noise
 
+# Display only noise
 plt.figure()
-plt.plot(t, am_sig)
-plt.title('Amplitude Modulation - fcarrier = 2kHz')
+plt.plot(t, noise)
+plt.title('Noise Generation')
 plt.xlabel('Time (s)')
 plt.ylabel('Amplitude (V)')
 plt.show()
 
-# Calculate FFT of the modulated signal
-f, tf_mod = calculate_FFT_1D(am_sig, 1e4)
+# Calculate FFT of the noise
+f, tf_mod = calculate_FFT_1D(noise, 1e4)
 plt.figure()
 plt.plot(f, np.abs(tf_mod))
-plt.title('Fourier Transform of the modulated signal')
+plt.title('Fourier Transform of the noise')
 plt.show()
 
-# demodulation
-am_sig_dem = carrier * am_sig
+# Histogram of the noise signal
 
+
+# Display of the noisy signal
 plt.figure()
-plt.plot(t, am_sig_dem)
-plt.title('Amplitude DeModulation - fcarrier = 2kHz')
+plt.plot(t, noise_sig)
+plt.title('Noise Generation')
 plt.xlabel('Time (s)')
 plt.ylabel('Amplitude (V)')
 plt.show()
 
-# Calculate FFT of the modulated signal
-f, tf_demod = calculate_FFT_1D(am_sig_dem, 1e4)
+# Calculate FFT of the noisy signal
+f, tf_mod = calculate_FFT_1D(noise_sig, 1e4)
 plt.figure()
-plt.plot(f, np.abs(tf_demod))
-plt.title('Fourier Transform of the demodulated signal')
+plt.plot(f, np.abs(tf_mod))
+plt.title('Fourier Transform of the noised signal')
 plt.show()

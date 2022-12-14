@@ -9,6 +9,7 @@ Version : 1.0 - 2022-12-01
 
 from scipy import fftpack
 import numpy as np
+from numpy import random as rd
 
 
 def test_signal():
@@ -100,3 +101,21 @@ def calculate_FFT_1D(signal, Fe):
     TF = fftpack.fft(signal)/len(signal)
     freq = fftpack.fftfreq(len(signal)) * Fe
     return freq, TF
+
+def generate_noise(nb_samples):
+    """
+    Generates a random vector of {nb_samples} samples
+
+    Parameters
+    ----------
+    nb_samples : int
+        Size of the vector.
+
+    Returns
+    -------
+    v_noise : 1-dimension vector - double
+        Array of random floats of shape nb_samples.
+
+    """
+    v_noise = rd.random(nb_samples) - 0.5
+    return v_noise
