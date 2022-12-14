@@ -42,7 +42,21 @@ class Cat(Animal):
 		""" Cat class display
 		"""
 		return f"Animal/CAT [ {self.name} ] born in {self.birthyear}"
+
+
+class Dog(Animal):
+	""" Object class Dog, inherit from Animal
+	"""
+	def __init__(self, name="Hello", sound="Wouaf"):
+		""" Dog class constructor
+		:name: name of the animal
+		"""
+		super().__init__(name, sound)
 		
+	def __str__(self):
+		""" Dog class display
+		"""
+		return f"Animal/DOG [ {self.name} ] born in {self.birthyear}"		
 
 
 # Test of the class Animal
@@ -60,3 +74,9 @@ if __name__ == '__main__':
 	print(cat1)
 	cat1.move()
 	cat1.speak()
+	
+	dog1 = Dog("Ralph")
+	dog1.birthyear = 2012
+	print(dog1)
+	dog1.move()
+	dog1.speak()
