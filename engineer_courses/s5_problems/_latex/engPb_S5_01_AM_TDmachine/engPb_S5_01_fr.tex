@@ -1,0 +1,258 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Engineering problems / LaTeX Template
+%		Semester 5
+%		Institut d'Optique Graduate School
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	EngPb_01	/ AM Modulation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Created by:
+%	Julien VILLEMEJANE - 08/dec/2022
+% Modified by:
+%	
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Professional Newsletter Template
+% LaTeX Template
+% Version 1.0 (09/03/14)
+%
+% Created by:
+% Bob Kerstetter (https://www.tug.org/texshowcase/) and extensively modified by:
+% Vel (vel@latextemplates.com)
+% 
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt]{article} % The default font size is 10pt; 11pt and 12pt are alternatives
+
+\input{../../../_latex_assets/eng_pb_structure.tex} % Include the document which specifies all packages and structural customizations for this template
+
+\def\dirName{engPb_S5_01}
+
+\begin{document}
+
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATIONS
+%----------------------------------------------------------------------------------------
+\input{ \dirName /\dirName _fr_info.tex}
+
+
+%----------------------------------------------------------------------------------------
+%	HEADER IMAGE
+%----------------------------------------------------------------------------------------
+
+\begin{figure}[H]
+\centering\includegraphics[width=0.5\linewidth]{../../../_latex_assets/logo_iogs.png}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	SIDEBAR - FIRST PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{.35\linewidth} % Mini page taking up 30% of the actual page
+\begin{mdframed}[style=sidebar,frametitle={\module}] % Sidebar box
+
+%-----------------------------------------------------------
+%	DOCUMENT DESCRIPTION
+\begin{center}
+
+\textit{\large \centering \year}
+\end{center}
+
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+\begin{center}
+	\textit{\large \moduleSmall}
+\end{center}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+\begin{center}
+	\textbf{\problem} ( \validation )
+\end{center}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\textbf{Concepts étudiés}
+
+\begin{itemize}
+\input{ \dirName /\dirName _fr_concepts.tex}
+\end{itemize}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\textbf{Mots clefs}
+
+\keywords
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\textbf{Sessions}
+
+\begin{itemize}
+\item[\textbf{\scheduleCM}] Cours(s) - 1h30
+\item[\textbf{\scheduleTD}] TD(s) - 1h30
+\item[\textbf{\scheduleTDcomputer}] TD(s) Machine - 2h00
+\item[\textbf{\scheduleTP}] TP(s) - 4h30
+\end{itemize}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+{\large Travail}
+
+\textbf{\workingTeam}
+
+\textbf{\workingSpecial}
+
+
+%-----------------------------------------------------------
+
+\end{mdframed}
+
+
+\centering
+\begin{minipage}[t]{.95\linewidth}
+\textbf{Institut d'Optique}\\
+Graduate School, \textit{France}\\
+\href{https://www.institutoptique.fr}{https://www.institutoptique.fr}
+\end{minipage}
+
+\end{minipage}\hfill % End the sidebar mini page 
+%
+%----------------------------------------------------------------------------------------
+%	MAIN BODY - FIRST PAGE
+%----------------------------------------------------------------------------------------
+%
+\begin{minipage}[t]{.60\linewidth} % Mini page taking up 66% of the actual page
+
+\hypertarget{context}{\heading{\huge \problemName}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%% Short introduction 
+\input{ \dirName /\dirName _fr_intro.tex}
+
+%%
+
+\bigskip
+
+%----------------------------------------------------------------------------------------
+%	IN-TEXT BOX / Intended learning outcomes
+%----------------------------------------------------------------------------------------
+
+\begin{mdframed}[style=aavbox,frametitle={Acquis d'Apprentissage Visés}]
+
+En résolvant ce problème, les étudiant$\cdot$e$\cdot$s seront capables de  :
+
+\centerline {\rule{.40\linewidth}{.1pt}} % Horizontal line
+
+\begin{center}
+{\large \textsc{Côté Numérique}}
+\end{center}
+
+\begin{enumerate}
+\input{ \dirName /\dirName _fr_aav_num.tex}
+\end{enumerate}
+
+\centerline {\rule{.40\linewidth}{.1pt}} % Horizontal line
+
+\begin{center}
+{\large \textsc{Côté Physique}}
+\end{center}
+
+\begin{enumerate}
+\input{ \dirName /\dirName _fr_aav_phys.tex}
+\end{enumerate}
+
+\end{mdframed}
+\medskip
+
+
+
+%\begin{wrapfigure}[7]{l}[0pt]{0pt} % In-line figure with text wrapping around it
+%\includegraphics[width=0.3\textwidth]{engPb_S5_01/placeholder.jpg}
+%\end{wrapfigure}
+
+\end{minipage} % End the main body - first page mini page
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY - SECOND PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{.66\linewidth} % Mini page taking up 66% of the actual page
+
+%----------------------------------------------------------------------------------------
+%	IN-TEXT BOX / Deliverables
+%----------------------------------------------------------------------------------------
+
+
+\begin{mdframed}[style=intextbox,frametitle={Livrables attendus}] % Sidebar box
+
+\input{ \dirName /\dirName _fr_livrables.tex}
+
+
+\end{mdframed}
+
+%-----------------------------------------------------------
+
+\hypertarget{stepbystep}{\heading{Données de départ}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+\input{ \dirName /\dirName _fr_steps.tex}
+
+\centerline {\rule{.70\linewidth}{.25pt}} % Horizontal line
+
+%-----------------------------------------------------------
+
+\hypertarget{ressources}{\heading{Ressources}{6pt}} % \hypertarget provides a label to reference using \hyperlink{label}{link text}
+
+\input{ \dirName /\dirName _fr_ressources.tex}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage}\hfill % End of the main body - second page mini page
+\begin{minipage}[t]{.30\linewidth} % Mini page taking up 30% of the actual page
+
+%----------------------------------------------------------------------------------------
+%	SIDEBAR - SECOND PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{mdframed}[style=sidebar,frametitle={}] % Sidebar box
+
+\heading{Outils Numériques}{0pt}
+
+\centerline {\rule{.40\linewidth}{.1pt}} % Horizontal line
+
+\textbf{Fonctions et bibliothèques conseillées} :
+
+\input{ \dirName /\dirName _fr_num_basics.tex}
+
+\centerline {\rule{.40\linewidth}{.1pt}} % Horizontal line
+
+
+\textbf{Outils avancés} :
+
+\input{ \dirName /\dirName _fr_num_advanced.tex}
+
+\end{mdframed}\hfill
+
+%----------------------------------------------------------------------------------------
+
+\end{minipage} % End of the sidebar mini page
+
+%----------------------------------------------------------------------------------------
+
+\end{document} 
