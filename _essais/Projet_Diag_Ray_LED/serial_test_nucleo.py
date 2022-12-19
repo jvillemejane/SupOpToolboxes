@@ -19,8 +19,6 @@ Created on Thu Dec 15 13:40:39 2022
 @author: julien.villemejane
 """
 
-
-
 import serial
 import serial.tools.list_ports
 
@@ -29,12 +27,12 @@ serial_port = serial.tools.list_ports.comports()
 
 # Print the list of avalaible COM ports
 for k in serial_port:
-    print(f"{k} is {k}")
+    print(f"{k}")
     
 # serial_com = input("Quel port voulez-vous utiliser ? (uniquement le nombre) ")
 
 
-serial_com = 9
+serial_com = 6
 print(f"Utilisation du port COM{serial_com} --> ")
 serial_com_name = 'COM'+str(serial_com)
 
@@ -52,7 +50,5 @@ while(ser.in_waiting == 0):
 
 rec_data_nucleo = ser.readline(2)
 print(f'Rec = {rec_data_nucleo}')
-
-
 
 ser.close()  
