@@ -7,6 +7,7 @@ Laboratoire d Enseignement Experimental - Institut d Optique Graduate School
 Version : 1.0 - 2022-12-01
 
 Adapted from Francois Marquier / ENS Paris-Saclay
+@author: julien.villemejane
 """
 
 import numpy as np
