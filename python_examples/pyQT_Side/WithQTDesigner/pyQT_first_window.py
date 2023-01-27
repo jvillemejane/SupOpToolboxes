@@ -42,12 +42,12 @@ class Window(QMainWindow):
     
     def __init__(self, parent=None):
         """
-        
+        Initializes the main window of the application
 
         Parameters
         ----------
-        parent : TYPE, optional
-            DESCRIPTION. The default is None.
+        parent : argv from sys
+            Default is None.
 
         Returns
         -------
@@ -60,6 +60,14 @@ class Window(QMainWindow):
         
     
     def tryMeButtonPressed(self):
+        """
+        Modifies text of TryMe button when it press
+
+        Returns
+        -------
+        None.
+
+        """
         self.tryMeButton.setText('Text Changed')
 
 if __name__ == "__main__":
