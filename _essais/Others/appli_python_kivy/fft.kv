@@ -1,0 +1,129 @@
+# Python + Kivy / FFT Acquisition and Screen
+#   Module : CéTI/IéTI
+# --------------------------------------------------------------
+#    Acquisition via Nucléo et Affichage FFT
+# --------------------------------------------------------------
+#    Auteur : Julien VILLEMEJANE
+#    Date : 13/10/2020
+# --------------------------------------------------------------
+
+
+<FFTConfigDataWindow>:
+    name: "config"
+
+    btnStartAcq: btnStartAcq
+
+    FloatLayout:
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Acquisition de données"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.1, "top":1}
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0, "top":0.8}
+                text: "Name: "
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+            TextInput:
+                pos_hint: {"x":0.5, "top":0.8}
+                size_hint: 0.4, 0.12
+                id: acqTime
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 14**4
+
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.2}
+            size_hint: 0.7, 0.07
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Tester la connexion avec Nucleo"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.testNucleo()
+
+        Button:
+            id: btnStartAcq
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.7, 0.10
+            text: "Lancer l'acquisition"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.acquireDataNucleo()
+
+
+<FFTPlottingWindow>:
+    name: "fftplotting"
+
+    FloatLayout:
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.7, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Signal temporel"
+            on_release:
+                root.backToData()
+                root.manager.transition.direction = "down"
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.2}
+            size_hint: 0.7, 0.07
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Retour sur la configuration"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.backToConfig()
+
+<FFTAcquisitionDataWindow>:
+    name: "acquisition"
+
+    FloatLayout:
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.7, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Afficher la FFT"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.processFFTData()
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.2}
+            size_hint: 0.7, 0.07
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Retour sur la configuration"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.backToConfig()
+
+
+<FFTTestDataWindow>:
+    name: "testw"
+
+    FloatLayout:
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.05}
+            size_hint: 0.7, 0.1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Afficher la FFT"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.processFFTData()
+
+        Button:
+            pos_hint:{"x":0.15,"y":0.2}
+            size_hint: 0.7, 0.07
+            font_size: (root.width**2 + root.height**2) / 17**4
+            text: "Retour sur la configuration"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.backToConfig()

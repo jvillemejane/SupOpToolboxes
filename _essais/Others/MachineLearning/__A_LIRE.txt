@@ -1,0 +1,9 @@
+Intro Keras / Tensorflow / Flask (web)
+	https://www.youtube.com/watch?v=9tLWj7iOiP8
+
+Image recognition :
+	https://machinelearningmastery.com/object-recognition-with-deep-learning/
+
+Dataset Lego : https://www.kaggle.com/datasets/joosthazelzet/lego-brick-images?ref=hackernoon.com
+
+Très bonne présentation : https://www.youtube.com/watch?v=hQ6pmoNZzU8

@@ -1,0 +1,4 @@
+Guillaume : 
+https://www.youtube.com/watch?v=5TpBe7KTAHE&list=PLO_fdPEVlfKoanjvTJbIbd9V5d9Pzp8Rw&index=5
+
+https://github.com/MachineLearnia/Deep-Learning-Youtube/blob/main/01_Premier_neurone.ipynb
