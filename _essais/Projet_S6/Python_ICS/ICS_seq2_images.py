@@ -15,7 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-img = Image.open('airy_1mm.bmp').convert('L')
+img = Image.open('airy_2mm.bmp').convert('L')
 img_data = np.asarray(img)
 
 plt.imshow(img_data, cmap='hot')
