@@ -24,7 +24,11 @@
 Color_10_Click::Color_10_Click(I2C *_i2c, DigitalOut *_led_data){
     /* Initialisation of interrupt input */
     if (_led_data){ delete __led_data; }
-    __led_data=_led_data;
+    __led_data = _led_data;
+    __led = new WS2812(__led_data, 1, 0, 5, 5, 0);  // only 1 _led_data
+        // Timing value 0,5,5,0 are for L476RG Nucleo Board
+    __led->useGlobalBrightness(false);
+    __led->SetAll(0);  // Led Off at the beginning
     /* Initialisation of i2c module */
     if (_i2c){ delete __i2c; }
     __i2c=_i2c;
@@ -126,4 +130,29 @@ void Color_10_Click::readRGBCIRValue(int rgbcIR[]){
     rgbcIR[2] = readBlueValue();
     rgbcIR[3] = readClearValue();
     rgbcIR[4] = readIRValue();
+}
+
+void Color_10_Click::setLedWhite(char ww){
+    __led->SetAll(0x00FFFFFF * (ww / 255.0));
+    __led->write();
+}
+
+void Color_10_Click::setLedRed(char rr){
+    __led->SetAll(0x00FF0000 * (rr / 255.0));
+    __led->write();
+}
+
+void Color_10_Click::setLedBlue(char bb){
+    __led->SetAll(0x000000FF * (bb / 255.0));
+    __led->write();
+}
+
+void Color_10_Click::setLedGreen(char gg){
+    __led->SetAll(0x0000FF00 * (gg / 255.0));
+    __led->write();
+}
+
+void Color_10_Click::setLedOff(void){
+    __led->SetAll(0);
+    __led->write();
 }

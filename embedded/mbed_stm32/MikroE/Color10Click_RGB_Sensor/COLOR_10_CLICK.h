@@ -20,6 +20,7 @@
 #define __COLOR_10_CLICK_HEADER_H__
 
 #include <mbed.h>
+#include "WS2812.h"
  
 /** Constant definition */
 #define     DEBUG_MODE                  1
@@ -68,6 +69,8 @@ class Color_10_Click{
         I2C             *__i2c = NULL;
         /// digital output to control the WS2812 RGB Led
         DigitalOut      *__led_data = NULL;
+        /// WS2812 led
+        WS2812          *__led;
 
     public:
         /**
@@ -159,6 +162,12 @@ class Color_10_Click{
         * @return R G B C IR value in a 5 int arrays
         */
         void readRGBCIRValue(int rgbcIR[]);
+
+        void setLedWhite(char ww);
+        void setLedRed(char rr);
+        void setLedBlue(char bb);
+        void setLedGreen(char gg);
+        void setLedOff(void);
 };
 
 #endif
