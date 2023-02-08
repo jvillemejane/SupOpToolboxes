@@ -74,7 +74,7 @@ class Color_14_Click{
         * @brief Simple constructor of the Color_14_Click class.
         * @details Create a Color_14_Click object with
         *    an I2C interface
-        *    SPI communication will be initialized at 400kHz
+        *    I2C communication will be initialized at 400kHz
         * @param _i2c SPI interface not initialized
         * @param _int interrupt Input 
         */
