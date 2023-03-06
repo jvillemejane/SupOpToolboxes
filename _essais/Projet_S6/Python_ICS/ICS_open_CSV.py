@@ -28,7 +28,7 @@ print(lignes[0])
 
 ## Avec Numpy
 # Lecture des données au format str
-data = np.data = np.genfromtxt('test_oscillo_AM_2k_400_50p_4k.csv', delimiter=',', skip_header = 3)
+data = np.genfromtxt('test_oscillo_AM_2k_400_50p_4k.csv', delimiter=',', skip_header = 3)
 print(data)
 time = data[:,1]
 freq_sample = 1/(time[2]-time[1])
