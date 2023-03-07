@@ -74,3 +74,14 @@ void TempHum_14_Click::readTRH(float *temp, float *hum){
     _humidity = 100.0 * hUm / 65535;
     *hum = _humidity;
 }
+
+void TempHum_14_Click::floatToBytes(float *value, uint8_t xbuf[]) {
+    uint8_t *b = (uint8_t*) value;
+    memcpy(xbuf,b,sizeof(xbuf));
+}
+
+float TempHum_14_Click::bytesToFloat(uint8_t xbuf[]) {
+    float x = *((float*)(xbuf));
+    return x;
+}
+
