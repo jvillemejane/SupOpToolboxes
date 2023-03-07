@@ -18,6 +18,7 @@
 #ifndef __TEMPHUM_14_CLICK_HEADER_H__
 #define __TEMPHUM_14_CLICK_HEADER_H__
 
+#include <cstdint>
 #include <mbed.h>
  
 /** Constant definition */
@@ -98,6 +99,22 @@ class TempHum_14_Click{
         * @return Temperature and Humidity from the sensor.
         */
         void readTRH(float *temp, float *hum);
+
+        /**
+        * @brief Convert a float value to a 4 bytes array
+        *
+        * @param value Floating variable to convert.
+        * @param value Array of 4 bytes.
+        */
+        void floatToBytes(float *value, uint8_t xbuf[]);
+
+        /**
+        * @brief Convert a 4 bytes array to a floating variable
+        *
+        * @param xbuf Pointer to a 4 bytes array.
+        * @return Floating value.
+        */
+        float bytesToFloat(uint8_t xbuf[]);
 };
 
 #endif
