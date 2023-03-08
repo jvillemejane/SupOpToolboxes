@@ -54,7 +54,6 @@ def get_cam_list():
 
                 cams_info.append([cam_id.value, cam_ser_no, cam_name])
 
-            #cams_info.append([2, 3, 4])
             return cams_info
     else:
         return []
@@ -67,8 +66,6 @@ class uEyeCamera:
         self.colormode = None
         self.MemID = ueye.int()
         self.pcImageMemory = ueye.c_mem_p()
-        #self.width_max = ueye.INT(2456)
-        #self.height_max = ueye.INT(2054)
         self.width = ueye.INT()
         self.height = ueye.INT()
         self.pitch = ueye.INT()
@@ -81,6 +78,9 @@ class uEyeCamera:
         ret = ueye.is_InitCamera(self.h_cam, None)
         if ret != ueye.IS_SUCCESS:
             print("is_InitCamera ERROR")
+        ret = ueye.is_ResetToDefault(self.h_cam)
+        if ret != ueye.IS_SUCCESS:
+            print("is_ResetToDefault ERROR")
 
     def get_cam_info(self):
         cam_info = ueye.CAMINFO()
@@ -107,6 +107,27 @@ class uEyeCamera:
             name = sensor_info.strSensorName.decode('utf-8')
             pixel = sensor_info.wPixelSize.value
             return max_width, max_height, name, pixel
+    
+    def get_sensor_max_width(self):
+        sensor_info = ueye.SENSORINFO()
+
+        ret = ueye.is_GetSensorInfo(self.h_cam, sensor_info)
+        if ret != ueye.IS_SUCCESS:
+            print("is_GetSensorInfo ERROR")
+            return None, None, None, None
+        else:
+            return sensor_info.nMaxWidth
+    
+    def get_sensor_max_height(self):
+        sensor_info = ueye.SENSORINFO()
+
+        ret = ueye.is_GetSensorInfo(self.h_cam, sensor_info)
+        if ret != ueye.IS_SUCCESS:
+            print("is_GetSensorInfo ERROR")
+            return None, None, None, None
+        else:
+            return sensor_info.nMaxHeight
+    
 
     def set_display_mode(self, mode):
         ret = ueye.is_SetDisplayMode(self.h_cam, mode)
@@ -152,6 +173,11 @@ class uEyeCamera:
             self.MemID = ueye.int()
             self.pcImageMemory = ueye.c_mem_p()
             self.pitch = ueye.INT()
+            
+    def stop_camera(self):
+        self.stop_video()
+        self.un_alloc()
+        ueye.is_ExitCamera(self.h_cam)
 
     def get_mem_info(self):
         w = ueye.INT()

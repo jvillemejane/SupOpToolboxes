@@ -51,12 +51,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.data = np.random.random_sample(size=SAMPLES)
         self.plot1 = self.plotWidget.plot(self.x, self.data, pen=self.pen)
 
-def main():
-    app = QApplication(sys.argv)
-    main = MainWindow()
-    main.show()
-    sys.exit(app.exec_())
-
 
 if __name__ == '__main__':
-    main()
+    app = QApplication([])
+    main = MainWindow()
+    main.show()
+    app.exec()
