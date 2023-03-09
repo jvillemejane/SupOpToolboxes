@@ -123,11 +123,11 @@ class MainWindow(QMainWindow):
         
         self.selectedCamera = self.cameraListCombo.currentIndex()
         self.camera = camera.uEyeCamera(self.selectedCamera)
-        self.cameraExposureInfo.setText(f'Exposure : {self.camera.get_exposure()} ms')
         
         self.max_width = self.camera.get_sensor_max_width()
         self.max_height = self.camera.get_sensor_max_height()
-        
+        self.camera.set_exposure(0.9)
+        self.cameraExposureInfo.setText(f'Exposure : {self.camera.get_exposure()} ms')
         self.camera.set_colormode(ueye.IS_CM_MONO8)
         self.camera.set_aoi(0, 0, self.max_width-1, self.max_height-1)
         self.camera.alloc()
@@ -135,12 +135,12 @@ class MainWindow(QMainWindow):
         self.refreshGraph()
     
     def closeApp(self):
-        if(self.camera != None):
-            self.camera.stop_camera()
         self.close()
         self.closeEvent(None)
         
     def closeEvent(self, event):
+        if(self.camera != None):
+            self.camera.stop_camera()
         QApplication.quit()
 
         
