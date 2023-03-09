@@ -241,7 +241,7 @@ class uEyeCamera:
         exposure = ueye.double()
         ueye.is_Exposure(self.h_cam, ueye.IS_EXPOSURE_CMD_GET_EXPOSURE, exposure, ueye.sizeof(exposure))
 
-        return int(exposure.value)
+        return exposure.value
 
     def get_exposure_range(self):
         min_exposure = ueye.double()
