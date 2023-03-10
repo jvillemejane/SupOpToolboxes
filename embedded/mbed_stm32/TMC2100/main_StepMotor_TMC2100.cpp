@@ -1,6 +1,16 @@
-/* mbed Microcontroller Library
- * Copyright (c) 2019 ARM Limited
- * SPDX-License-Identifier: Apache-2.0
+/**
+ * FILENAME :        main_StepMotor_TMC2100.cpp          
+ *
+ * DESCRIPTION :
+ *       StepMotor_TMC2100 / Program for testing Step Motor controller module library.
+ *
+ * NOTES :
+ *       Developped by Villou / LEnsE
+ **
+ * AUTHOR :    Julien VILLEMEJANE        START DATE :    09/mar/2023
+ *
+ *       LEnsE / Institut d'Optique Graduate School
+ * @see https://learn.watterott.com/silentstepstick/pinconfig/tmc2100/
  */
 
 #include "mbed.h"

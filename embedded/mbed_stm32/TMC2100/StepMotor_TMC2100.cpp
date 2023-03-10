@@ -1,8 +1,8 @@
 /**
- * FILENAME :        LEnsE_VISION_INDUS.cpp          
+ * FILENAME :        StepMotor_TMC2100.cpp          
  *
  * DESCRIPTION :
- *       LEnsE_VISION_INDUS / electronic board to control computer vision experiment.
+ *       StepMotor_TMC2100 / Step Motor controller module library.
  *
  * NOTES :
  *       Developped by Villou / LEnsE
@@ -13,9 +13,7 @@
  * @see https://learn.watterott.com/silentstepstick/pinconfig/tmc2100/
  */
 
- #include <mbed.h>
- #include "LEnsE_VISION_INDUS.h"
-
+ #include "StepMotor_TMC2100.h"
 
  StepMotor_TMC2100::StepMotor_TMC2100(DigitalOut *en, DigitalOut *dir, PwmOut *step, bool config){
     this->_enable = false;
