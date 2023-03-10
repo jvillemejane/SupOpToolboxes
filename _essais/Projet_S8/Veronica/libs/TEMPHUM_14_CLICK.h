@@ -12,7 +12,6 @@
  *       Developped by Villou / LEnsE
  **
  * AUTHOR :    Julien VILLEMEJANE        START DATE :    09/feb/2023
- * 		Update :    09/mar/2023
  *
  *       LEnsE / Institut d'Optique Graduate School
  */
