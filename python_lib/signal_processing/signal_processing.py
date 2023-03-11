@@ -56,6 +56,7 @@ def generate_sinus_freq(f, Fe, nb_per):
     signal = np.sin(f * 2 * np.pi * t)
     return t, signal
 
+
 def generate_sinus_time(f, time):
     """
     Generates Sine Waveform from 
@@ -74,7 +75,10 @@ def generate_sinus_time(f, time):
         signal vector.
 
     """
-    signal = np.sin(f * 2 * np.pi * time)
+    if(f != 0):
+        signal = np.sin(f * 2 * np.pi * time)
+    else:
+        signal = np.zeros(len(time))
     return signal
 
 
