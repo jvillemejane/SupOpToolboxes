@@ -59,7 +59,10 @@ class MainWindow(QMainWindow):
         """ FFT Widget """
         self.plotFFTWidget = PlotWidget(title='Fourier Transform / Frequency-dependent')
         self.rightLayout.addWidget(self.plotFFTWidget)
-        self.plotFFTWidget.setBackground('w')     
+        self.plotFFTWidget.setBackground('w')        
+        
+        max_freq = self.freq1Slider.maximum()
+        self.plotFFTWidget.setXRange(-max_freq, max_freq, padding=0)  
         
         """ Sampling Widget """
         self.sampFreqValues = ['125', '250', '500', '1000', '5000', '10000']
@@ -115,12 +118,18 @@ class MainWindow(QMainWindow):
         """ Signals generation"""
         self.time, self.signal, self.freq, self.s_fft = self.generate_signals()
         """ Zoom for displaying """
-        freq_half = int(self.samples/2)
-        f_range = 200
-        #self.freq = self.freq[freq_half-f_range:freq_half+f_range]
-        #self.s_fft = self.s_fft[freq_half-f_range:freq_half+f_range]
-        """ Displaying data """
+        freq_half = int(self.samples/2)        
+        max_freq = self.freq1Slider.maximum()
+        f_range = max_freq / self.sampling_freq * self.samples
+        if(f_range > self.samples/2):
+            f_range = int(self.samples/2)
+        else:
+            f_range = int(f_range)
         
+        self.freq = self.freq[freq_half-f_range:freq_half+f_range]
+        self.s_fft = self.s_fft[freq_half-f_range:freq_half+f_range]
+        
+        """ Displaying data """
         self.plotSignalWidget.removeItem(self.plotSig)
         self.plotSig = self.plotSignalWidget.plot(self.time, self.signal, pen=self.pen)
         self.plotFFTWidget.removeItem(self.plotFFT)
