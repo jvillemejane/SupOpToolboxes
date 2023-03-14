@@ -30,31 +30,37 @@ MCC_motor   my_mcc3(&M3_D1, &M3_D2);
 /// Debugging display
 Ticker      displayTik;
 void        ISR_displayCnt(void){
-    sprintf(charStr, "CNT = %d.\r\n", my_mcc2.getCoderCnt());
+    sprintf(charStr, "CNT2 = %d.\r\nCNT3 = %d.\r\n\n", my_mcc2.getCoderCnt(), my_mcc3.getCoderCnt());
     my_pc.write(charStr, strlen(charStr));    
 }
 
 /// control
-bool        controlEnable = false;
-float       rc_setpoint = 0.7;
-float       rc_gain = 1/1000.0;
+bool        controlEnable = true;
+float       rc_setpoint = 0;
+float       rc_gain = 1/100.0;
+float       display_gain = 1/1000.0;
 Ticker      controlTik;
 AnalogOut   controlError(A2);
+
+/// Proportional - Integral - Derivative digital controller 
 void        ISR_controlSpeed(void){
-    int     error = my_mcc2.getCoderCnt()-my_mcc3.getCoderCnt();
-    float   errorF = 0.5 + error * rc_gain;
+    int     error;              /// Proportional
+    int     error_o = error;    /// Integral - old value of the error
+    error = my_mcc3.getCoderCnt()-my_mcc2.getCoderCnt();
     /// Displaying on A2
+    float   errorF = 0.5 + error * display_gain;
     controlError.write(errorF);
 
     /// Gain control
     float rc3 = rc_setpoint;
-    float rc2 = rc_setpoint + errorF * rc_gain;
-    if(rc2 < 0.5) rc2 = 0.5;
-    if(rc2 > 1.0) rc2 = 1.0;
+    float rc2 = rc_setpoint + error * rc_gain;
+    //if(rc2 < 0.5) rc2 = 0.5;
+    //if(rc2 > 1.0) rc2 = 1.0;
 
+    /// Outputs update
     if(controlEnable){
         my_mcc2.rotate(rc2);
-        my_mcc2.rotate(rc3);
+        my_mcc3.rotate(rc3);
     }
 
 }
@@ -68,17 +74,21 @@ int main()
     my_pc.write(charStr, strlen(charStr));
 
     //testConversion();
-    initNRF24(2450);
+    //initNRF24(2450);
 
     my_mcc2.setEnablePin(&Mx_en, true);
     my_mcc2.setCoderPin(&M2_A, &M2_B);
-    my_mcc3.setCoderPin(&M3_A, &M3_B);
+    my_mcc3.setCoderPin(&M3_B, &M3_A);
 
-    displayTik.attach(&ISR_displayCnt, 200ms);
+    displayTik.attach(&ISR_displayCnt, 500ms);
     controlTik.attach(&ISR_controlSpeed, 20ms);
+
+    my_mcc2.setEnable();
 
     while (true)
     {
+        /// Test basics function
+        /*
         my_mcc2.goForward(0.7);
         my_mcc3.goForward(0.7);
         thread_sleep_for(3*WAIT_TIME_MS);
@@ -91,6 +101,18 @@ int main()
         my_mcc2.stop();
         my_mcc3.stop();
         thread_sleep_for(3*WAIT_TIME_MS);
+        */
+
+        /// Test advanced functions
+        /*
+        my_mcc2.rotate(-0.7);
+        my_mcc3.rotate(-0.7);
+        */
+
+        /// Test loop control
+        thread_sleep_for(WAIT_TIME_MS);
+
+        /// Sensors
         /*
         my_sensor.readTRH(&temperature, &humidity);
         sprintf(charStr, "%f degres\r\n", temperature);

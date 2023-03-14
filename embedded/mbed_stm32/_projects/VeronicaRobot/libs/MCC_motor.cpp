@@ -65,20 +65,22 @@ void MCC_motor::stop(void){
 }    
 
 void MCC_motor::goForward(float rel_speed){
+    this->_rc = rel_speed;
     if(!this->_enGlobal){
         this->_en->write(1);
     }
-    this->_D1->write(rel_speed);
+    this->_D1->write(this->_rc);
     this->_D2->write(0);
 }
 
 
 void MCC_motor::goBackward(float rel_speed){
+    this->_rc = rel_speed;
     if(!this->_enGlobal){
         this->_en->write(1);
     }
     this->_D1->write(0);
-    this->_D2->write(rel_speed);
+    this->_D2->write(this->_rc);
 }
 
 bool MCC_motor::rotate(float rel_speed){
@@ -88,7 +90,7 @@ bool MCC_motor::rotate(float rel_speed){
     }
     else{
         if(rel_speed < 0){
-            this->goBackward(rel_speed);
+            this->goBackward(-rel_speed);
             return false;
         }
         else{
