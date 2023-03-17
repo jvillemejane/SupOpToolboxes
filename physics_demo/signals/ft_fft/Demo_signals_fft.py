@@ -52,9 +52,7 @@ class MainWindow(QMainWindow):
         self.sin1Widget.setStyleSheet("background-color:lightblue;");
         self.sin2Widget.setStyleSheet("background-color:lightgreen;");
 
-        #self.plotSignalWidget.setYRange(0, 1, padding=0)
-
-        self.pen = mkPen(color=(255, 0, 0), width=5)
+        self.pen = mkPen(color=(128, 128, 0), width=5)
         
         """ FFT Widget """
         self.plotFFTWidget = PlotWidget(title='Fourier Transform / Frequency-dependent')
@@ -63,6 +61,8 @@ class MainWindow(QMainWindow):
         
         max_freq = self.freq1Slider.maximum()
         self.plotFFTWidget.setXRange(-max_freq, max_freq, padding=0)  
+
+        self.plotFFTWidget.setYRange(-.1, 1.1, padding=0)
         
         """ Sampling Widget """
         self.sampFreqValues = ['125', '250', '500', '1000', '5000', '10000']

@@ -34,6 +34,8 @@ class MCC_motor{
         PwmOut          *_D2;
         /// PWM Period in us
         int         _period_us;
+        /// PWM duty cycle value
+        float       _rc;
 
         /// Coder used or no
         bool            _coder;
