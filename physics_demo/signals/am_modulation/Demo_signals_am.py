@@ -20,21 +20,6 @@ from signal_processing.signal_processing import generate_sinus_time
 import sys  # We need sys so that we can pass argv to QApplication
 import os
 
-
-"""
-MainWindow class
-"""
-class MainWindow(QMainWindow):
-
-    
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-        self.plotSignalWidget = PlotWidget()
-        
-        
-        loadUi("Demo_signals_fft.ui", self)
-
-
 """
 MainWindow class
 """
