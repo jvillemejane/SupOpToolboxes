@@ -9,18 +9,24 @@ Created on 18/mar/2023
 @author: julien.villemejane
 """
 
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt5.uic import loadUi
-from PyQt5.QtGui import QPixmap, QImage, QPainter
+from PyQt5.QtGui import QPixmap, QImage, QPainter, QDoubleValidator
 from PyQt5 import QtCore
 import cv2
 
 import numpy as np
 from pyqtgraph import PlotWidget, plot, mkPen
-from signal_processing.signal_processing import generate_sinus_time
 
 import sys  # We need sys so that we can pass argv to QApplication
 import os
+
+def isfloat(num):
+    try:
+        float(num)
+        return True
+    except ValueError:
+        return False
 
 
 
@@ -32,7 +38,7 @@ class MainWindow(QMainWindow):
     
     def __init__(self):
         super().__init__(parent=None)
-        loadUi("Demo_physics_airy.ui", self)
+        loadUi("./data/Demo_physics_airy.ui", self)
         
         imageSize = self.imageDisplay.size()
         self.imageWidth = imageSize.width()
@@ -44,7 +50,7 @@ class MainWindow(QMainWindow):
         logo = QPixmap("./data/IOGS-LEnsE-logo.jpg")
         logo = logo.scaled(imageSize.width(), imageSize.height(), QtCore.Qt.KeepAspectRatio)
         self.lense_logo.setPixmap(logo)
-        
+                
         """ Opening image """
         self.openImage("./data/airy_1mm.bmp")
         self.processRatio()
@@ -77,7 +83,15 @@ class MainWindow(QMainWindow):
         self.sectionLayout.addWidget(self.plotSection)
         self.plotSection.setBackground('w')
         self.plotSection.setYRange(0, 255, padding=0)
-        self.plotSection.setXRange(0, 1279, padding=0)
+        self.plotSection.setXRange(0, self.imageOrW-1, padding=0)
+        self.plotSection.setLabel('bottom', 'Position in px')
+        
+        """ """
+        self.originSlider.setMaximum(self.imageOrW//10)
+        self.originSlider.setMinimum(-self.imageOrW//10)
+        self.origin = 0
+        self.originSlider.setValue(self.origin)
+        self.originValue.setText(f'{self.origin} px')
         
         self.opticalParams.setStyleSheet("background-color:#A4E1DA;");
         self.meanParams.setStyleSheet("background-color:#CAE1A4;");
@@ -88,6 +102,9 @@ class MainWindow(QMainWindow):
         self.positionSlider.valueChanged.connect(self.verticalChanged)
         self.meanSlider.valueChanged.connect(self.verticalChanged)
         self.logCheck.stateChanged.connect(self.verticalChanged)
+        self.cameraBtn.clicked.connect(self.axisChanged)
+        self.opticalBtn.clicked.connect(self.opticalChanged)
+        self.originSlider.valueChanged.connect(self.axisChanged)
                     
 
     def processRatio(self):
@@ -105,6 +122,34 @@ class MainWindow(QMainWindow):
         self.imageOrW = self.image.shape[1]     # width of the original image
         self.imageOrH = self.image.shape[0]     # height of the original image
 
+    def opticalChanged(self):
+        print('optical')
+        self.refreshGraph()
+
+    def axisChanged(self):
+        self.origin = self.originSlider.value()
+        self.originValue.setText(f'{self.origin} px')
+        self.taille_pix = self.pixelEdit.text()
+        if(self.taille_pix != ""):
+            if(isfloat(self.taille_pix)):
+                self.taille_pix = float(self.taille_pix)
+                min_ax = (-(self.imageOrW)+self.maxIntensity+self.origin)/2*self.taille_pix
+                max_ax = ((self.imageOrW)+self.maxIntensity+self.origin)/2*self.taille_pix
+                self.x_axis = np.linspace(min_ax,max_ax, self.imageOrW)
+                
+            else:
+                msg = QMessageBox()
+                msg.setIcon(QMessageBox.Warning)
+                msg.setText("Not a number - Pixel Size")
+                msg.setWindowTitle("Not a Number Value")
+                msg.exec_()               
+        else:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
+            msg.setText("Empty Value - Pixel Size")
+            msg.setWindowTitle("Empty Value")
+            msg.exec_()
+        self.refreshGraph()
 
     def updateImage(self):
         self.image_line = np.array(self.image)
@@ -149,12 +194,22 @@ class MainWindow(QMainWindow):
         self.updateImage()
         """ Displaying data """
         self.plotSection.clear()
-        self.plotSection.plot(self.image[self.position-1,:], pen=self.pen)
+        if(isfloat(self.pixelEdit.text())):
+            self.plotSection.setXRange(self.x_axis[0], self.x_axis[self.imageOrW-1], padding=0)
+            self.plotSection.plot(self.x_axis, self.image[self.position-1,:], pen=self.pen)
+            self.plotSection.setLabel('bottom', 'Position in um')
+        else:
+            self.plotSection.plot(self.image[self.position-1,:], pen=self.pen)
+            self.plotSection.setXRange(0, self.imageOrW-1, padding=0)
+            self.plotSection.setLabel('bottom', 'Position in px')
         
         if(self.mean != 0):
             penMean = mkPen(color=(255, 0, 128), width=2)
             meanValue = np.mean(self.image[self.position-self.mean:self.position+self.mean, :],axis=0)
-            self.plotSection.plot(meanValue, pen=penMean)
+            if(isfloat(self.pixelEdit.text())):
+                self.plotSection.plot(self.x_axis, meanValue, pen=penMean)
+            else:
+                self.plotSection.plot(meanValue, pen=penMean)
     
     def closeEvent(self, event):
         QApplication.quit()
