@@ -1,0 +1,5 @@
+Executable building
+
+pyinstaller --onefile -w Demo_physics_airy.py
+
+Then you need to copy the Demo_signals_am.ui file close to the executable.
