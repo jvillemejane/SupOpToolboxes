@@ -9,7 +9,7 @@ Created on 18/mar/2023
 @author: julien.villemejane
 """
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox, QFileDialog
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap, QImage, QPainter, QDoubleValidator
 from PyQt5 import QtCore
@@ -54,39 +54,14 @@ class MainWindow(QMainWindow):
         self.pen = mkPen(color=(128, 128, 0), width=2)
         self.maxMean = 200
         self.simuDisplay = False
-        
+        ''' Logo LEnsE '''
         imageSize = self.lense_logo.size()
         logo = QPixmap("./data/IOGS-LEnsE-logo.jpg")
         logo = logo.scaled(imageSize.width(), imageSize.height(), QtCore.Qt.KeepAspectRatio)
         self.lense_logo.setPixmap(logo)
                 
         """ Opening image """
-        self.openImage("./data/airy_1mm.bmp")
-        self.processRatio()
-        """ Resizing image """
-        self.resizeDispImage()
-        """ Position Slider update """
-        self.positionSlider.setMaximum(self.imageOrH) # depending on the height of the image
-        self.positionSlider.setMinimum(1)
-        
-        """ Find Max intensity in gray image """
-        self.maxIntensity = np.max(self.image)
-        self.maxIntensityInd = np.argmax(self.image) // self.imageOrW 
-        """ Set position of the slider to the maximum intensity line"""
-        self.position = self.maxIntensityInd
-        self.positionValue.setText(f'{self.position} px')
-        self.positionSlider.setValue(self.maxIntensityInd)
-        """ Mean Slider update """
-        if((self.maxIntensityInd > self.maxMean) and (self.imageOrH-self.maxIntensityInd) > self.maxMean):
-            self.meanSlider.setMaximum(self.maxMean)
-        else:
-            value = np.minimum(self.maxIntensityInd, self.imageOrH-self.maxIntensityInd)
-            self.meanSlider.setMaximum(value)
-        self.mean = int(self.meanSlider.value())
-        self.meanValue.setText(f'{self.mean} px')
-        
-        """ Updating display of the image """
-        self.updateImage()
+        self.initImage()
         
         """ Airy Section """
         self.plotSection = PlotWidget()
@@ -143,6 +118,71 @@ class MainWindow(QMainWindow):
         self.diamSlider.valueChanged.connect(self.opticalChanged)
         self.lambdaSlider.valueChanged.connect(self.opticalChanged)
         self.intensitySlider.valueChanged.connect(self.opticalChanged)
+        self.fileBt.clicked.connect(self.openFileImage)
+
+    def initImage(self, fileName = ""):
+        """ Opening image """
+        if(fileName == ""):
+            self.openImage("./data/airy_1mm.bmp")
+        else:
+            self.openImage(fileName)
+        self.processRatio()
+        """ Resizing image """
+        self.resizeDispImage()
+        """ Position Slider update """
+        self.positionSlider.setMaximum(self.imageOrH) # depending on the height of the image
+        self.positionSlider.setMinimum(1)
+        
+        """ Find Max intensity in gray image """
+        self.maxIntensity = np.max(self.image)
+        self.maxIntensityInd = np.argmax(self.image) // self.imageOrW 
+        """ Set position of the slider to the maximum intensity line"""
+        self.position = self.maxIntensityInd
+        self.positionValue.setText(f'{self.position} px')
+        self.positionSlider.setValue(self.maxIntensityInd)
+        """ Mean Slider update """
+        if((self.maxIntensityInd > self.maxMean) and (self.imageOrH-self.maxIntensityInd) > self.maxMean):
+            self.meanSlider.setMaximum(self.maxMean)
+        else:
+            value = np.minimum(self.maxIntensityInd, self.imageOrH-self.maxIntensityInd)
+            self.meanSlider.setMaximum(value)
+        self.mean = int(self.meanSlider.value())
+        self.meanValue.setText(f'{self.mean} px')
+        
+        """ Updating display of the image """
+        self.updateImage()        
+
+    def openFileImage(self):
+        self.openFileNameDialog()
+        self.initImage(self.fileName)
+        self.refreshGraph()
+    
+    def openFileNameDialog(self):
+        self.dlg = QFileDialog()
+        options = QFileDialog.Options()
+        options |= QFileDialog.FileMode.ExistingFiles
+        self.fileName, _ = self.dlg.getOpenFileName(self,
+                        "QFileDialog.getOpenFileName()", "",
+                        "Images (*.png *.jpg *.bmp)", options=options)
+        if self.fileName:
+            # file name with extension
+            self.realFileName = os.path.basename(self.fileName)
+            self.openFileLabel.setText(os.path.splitext(self.realFileName)[0])
+    
+    def openFileNamesDialog(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        files, _ = QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "","All Files (*);;Python Files (*.py)", options=options)
+        if files:
+            print(files)
+    
+    def saveFileDialog(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(self,"QFileDialog.getSaveFileName()","","All Files (*);;Text Files (*.txt)", options=options)
+        if fileName:
+            print(fileName)
+        self.openFileLabel.setText('Opening !')
                     
 
     def processRatio(self):

@@ -658,6 +658,40 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="fileBt">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>70</y>
+      <width>221</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open File</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="openFileLabel">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>100</y>
+      <width>221</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>NO FILE</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
