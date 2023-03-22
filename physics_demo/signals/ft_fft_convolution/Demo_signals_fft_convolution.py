@@ -11,6 +11,9 @@ Created on 11/mar/2023
 
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.uic import loadUi
+from PyQt5.QtGui import QPixmap, QImage
+from PyQt5 import QtCore
+
 
 import numpy as np
 from pyqtgraph import PlotWidget, plot, mkPen
@@ -29,7 +32,20 @@ class MainWindow(QMainWindow):
     
     def __init__(self):
         super().__init__(parent=None)
-        loadUi("Demo_signals_fft_convolution.ui", self)
+        loadUi("./data/Demo_signals_fft_convolution.ui", self)
+        ''' Logo LEnsE '''
+        self.lense_logo.resize(300, 200)
+        imageSize = self.lense_logo.size()
+        logo = QPixmap("./data/IOGS-LEnsE-logo.jpg")
+        logo = logo.scaled(imageSize.width(), imageSize.height(), QtCore.Qt.KeepAspectRatio)
+        self.lense_logo.setPixmap(logo)
+        
+        """ Window Size """
+        self.width = self.size().width()
+        self.height = self.size().height()
+        
+        self.freqOffsetLabel.setStyleSheet('background-color: lightgreen')
+        self.samplesNumberLabel.setStyleSheet('background-color: lightblue')
         
         """ """
         self.maxNumber = 1001
@@ -50,16 +66,12 @@ class MainWindow(QMainWindow):
         self.plotSignalWidget.setBackground('w')
         self.plotSignalWidget.setYRange(-0.3, 1.1)
         
-        self.offsetWidget.setStyleSheet("background-color:lightblue;");
-        self.samplesWidget.setStyleSheet("background-color:lightgreen;");
         
         """ Events """        
         self.offsetSlider.valueChanged.connect(self.freqChanged)
         self.numberSlider.valueChanged.connect(self.freqChanged)
         self.onSig.stateChanged.connect(self.freqChanged)
         self.absSig.stateChanged.connect(self.freqChanged)
-        self.samplingFreqCombo.currentIndexChanged.connect(self.freqChanged)
-        self.samplesCombo.currentIndexChanged.connect(self.freqChanged)
         self.resetBt.clicked.connect(self.resetGraph)
         
         self.refreshGraph()
