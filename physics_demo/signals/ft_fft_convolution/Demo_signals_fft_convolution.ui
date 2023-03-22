@@ -20,24 +20,24 @@
       <x>0</x>
       <y>0</y>
       <width>951</width>
-      <height>441</height>
+      <height>491</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="leftLayout"/>
+    <layout class="QVBoxLayout" name="signalLayout"/>
    </widget>
-   <widget class="QWidget" name="sin1Widget" native="true">
+   <widget class="QWidget" name="offsetWidget" native="true">
     <property name="enabled">
      <bool>true</bool>
     </property>
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>460</y>
+      <y>500</y>
       <width>171</width>
-      <height>241</height>
+      <height>101</height>
      </rect>
     </property>
-    <widget class="QLabel" name="SineGen1">
+    <widget class="QLabel" name="freqOffsetLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -54,20 +54,26 @@
        <bold>true</bold>
       </font>
      </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
      <property name="text">
-      <string>Sinus Wave Generator 1</string>
+      <string>Frequency Offset</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QSlider" name="freq1Slider">
+    <widget class="QSlider" name="offsetSlider">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>50</y>
-       <width>22</width>
-       <height>160</height>
+       <x>10</x>
+       <y>70</y>
+       <width>151</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="minimum">
@@ -80,14 +86,14 @@
       <number>10</number>
      </property>
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="freq1Label">
+    <widget class="QLabel" name="offsetLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>50</y>
        <width>41</width>
        <height>16</height>
       </rect>
@@ -98,17 +104,17 @@
       </font>
      </property>
      <property name="text">
-      <string>Freq</string>
+      <string>Value</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="freq1Value">
+    <widget class="QLabel" name="offsetValue">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>220</y>
+       <x>100</x>
+       <y>50</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -118,19 +124,45 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="absSig">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>41</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>ABS</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="resetBt">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>20</y>
+       <width>51</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reset</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="sin2Widget" native="true">
+   <widget class="QWidget" name="samplesWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>460</y>
+      <x>10</x>
+      <y>610</y>
       <width>171</width>
-      <height>241</height>
+      <height>101</height>
      </rect>
     </property>
-    <widget class="QLabel" name="SineGen2">
+    <widget class="QLabel" name="samplesNumberLabel">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -148,19 +180,19 @@
       </font>
      </property>
      <property name="text">
-      <string>Sinus Wave Generator 2</string>
+      <string>Samples Number</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QSlider" name="freq2Slider">
+    <widget class="QSlider" name="numberSlider">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>50</y>
-       <width>22</width>
-       <height>160</height>
+       <y>70</y>
+       <width>141</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="minimum">
@@ -173,14 +205,14 @@
       <number>10</number>
      </property>
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QLabel" name="freq2Label">
+    <widget class="QLabel" name="numberLabel">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>50</y>
        <width>41</width>
        <height>16</height>
       </rect>
@@ -191,17 +223,17 @@
       </font>
      </property>
      <property name="text">
-      <string>Freq</string>
+      <string>Value</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="freq2Value">
+    <widget class="QLabel" name="numberValue">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>220</y>
+       <x>100</x>
+       <y>50</y>
        <width>47</width>
        <height>13</height>
       </rect>
@@ -213,10 +245,10 @@
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QCheckBox" name="onSig2">
+    <widget class="QCheckBox" name="onSig">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>10</x>
        <y>20</y>
        <width>41</width>
        <height>17</height>
@@ -231,9 +263,9 @@
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>460</y>
+      <y>500</y>
       <width>171</width>
-      <height>241</height>
+      <height>201</height>
      </rect>
     </property>
     <widget class="QLabel" name="samplingLabel">
