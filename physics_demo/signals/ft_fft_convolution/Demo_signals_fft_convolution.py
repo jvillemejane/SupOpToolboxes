@@ -20,6 +20,7 @@ import sys  # We need sys so that we can pass argv to QApplication
 import os
 
 
+
 """
 MainWindow class
 """

@@ -1,0 +1,5 @@
+Executable building
+
+pyintaller --onfile -w Demo_signals_fft.py
+
+Then you need to copy the Demo_signals_fft.ui file close to the executable.
