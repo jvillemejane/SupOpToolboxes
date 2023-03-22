@@ -26,20 +26,6 @@ MainWindow class
 class MainWindow(QMainWindow):
 
     
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
-        self.plotSignalWidget = PlotWidget()
-        
-        
-        loadUi("Demo_signals_fft.ui", self)
-
-
-"""
-MainWindow class
-"""
-class MainWindow(QMainWindow):
-
-    
     def __init__(self):
         super().__init__(parent=None)
         loadUi("Demo_signals_fft.ui", self)
