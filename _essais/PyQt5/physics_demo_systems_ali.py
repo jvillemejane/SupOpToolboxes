@@ -7,6 +7,8 @@ Created on Thu Mar 23 07:27:21 2023
 import sys
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QLabel, QPushButton, QVBoxLayout
+
+import graphicalLEnsE as gL
 """
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QPixmap, QImage
@@ -36,21 +38,27 @@ class MainWindow(QMainWindow):
         self.mainWidget = QWidget()
         self.setCentralWidget(self.mainWidget)
         
-        ''' Graphical Elements '''
-        self.my_label = QLabel('<h1>Mon application est geniale</h1>')
-        self.my_button = QPushButton("Appuyez !")
+        ''' Graphical elements '''
+        self.gainALI = gL.sliderBlock("GAIN ALI", action=self.updateFC)
+        self.gainALI.setPercent(True, 50)
+        self.gbwALI = gL.sliderBlock("GBW ALI", action=self.updateFC)
+        self.gbwALI.setUnits('Hz')
+        self.gbwALI.setPercent(True, 20)
+        self.fcALI = gL.labelBlock('Cut Freq')
+        self.fcALI.setUnits('Hz')
+        
         ''' Layout Manager '''
         self.layout = QVBoxLayout()
-        self.layout.addWidget(self.my_label)
-        self.layout.addWidget(self.my_button)
+        self.layout.addWidget(self.gainALI)
+        self.layout.addWidget(self.gbwALI)
+        self.layout.addWidget(self.fcALI)
         self.mainWidget.setLayout(self.layout)
-        ''' Events '''
-        self.my_button.clicked.connect(self.buttonClicked)
     
-    def buttonClicked(self):
-        self.my_button.setText("! INACTIF !")
-        self.my_button.setEnabled(False)
-    
+    def updateFC(self):
+        print('FC')
+        #self.gbw = self.gbwALI.getSliderValue()
+        #self.gain = self.gainALI.getSliderValue()
+        
     def closeEvent(self, event):
         QApplication.quit()
 
