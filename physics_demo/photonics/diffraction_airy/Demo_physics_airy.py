@@ -302,7 +302,7 @@ class MainWindow(QMainWindow):
         self.image_line = np.array(self.image)
         """ Log scale on the image """
         if(self.logCheck.isChecked()):
-            self.image_line = np.log10(self.image_line+1)
+            self.image_line = np.log(0.99*self.image_line+1)
             self.image_line = self.image_line / np.max(self.image_line) * 255
             self.image_line = np.trunc(self.image_line).astype('uint8')
         self.image_line[self.position-2:self.position+2,:] = 255
