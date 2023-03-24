@@ -5,6 +5,7 @@ Created on Thu Mar 23 07:27:21 2023
 @author: Villou
 """
 import sys
+import numpy as np
 
 from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QLabel, QPushButton, QVBoxLayout
 
@@ -24,7 +25,6 @@ import os
 
 
 
-
 """
 MainWindow class
 """
@@ -39,11 +39,13 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.mainWidget)
         
         ''' Graphical elements '''
-        self.gainALI = gL.sliderBlock("GAIN ALI", action=self.updateFC)
+        self.gainALI = gL.sliderBlock("GAIN ALI")
         self.gainALI.setPercent(True, 50)
-        self.gbwALI = gL.sliderBlock("GBW ALI", action=self.updateFC)
+        self.gbwALI = gL.sliderBlock("GBW ALI")
         self.gbwALI.setUnits('Hz')
         self.gbwALI.setPercent(True, 20)
+        self.gbwALI.asignal.connect(self.updateFC)
+        self.gainALI.asignal.connect(self.updateFC)
         self.fcALI = gL.labelBlock('Cut Freq')
         self.fcALI.setUnits('Hz')
         
@@ -54,10 +56,11 @@ class MainWindow(QMainWindow):
         self.layout.addWidget(self.fcALI)
         self.mainWidget.setLayout(self.layout)
     
-    def updateFC(self):
-        print('FC')
-        #self.gbw = self.gbwALI.getSliderValue()
-        #self.gain = self.gainALI.getSliderValue()
+    def updateFC(self, sig):
+        self.gbw = self.gbwALI.getRealValue()
+        self.gain = self.gainALI.getRealValue()
+        self.fc = np.round(self.gbw / self.gain, decimals=2)
+        self.fcALI.setValue(self.fc)
         
     def closeEvent(self, event):
         QApplication.quit()

@@ -11,21 +11,32 @@ import numpy as np
 
 from PyQt5.QtWidgets import (QWidget, QGridLayout, QLabel, QSlider,
                              QLineEdit, QPushButton, QMessageBox)
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal, QObject
 
 styleH = "font-size:22px; padding:10px; color:Navy;"
 styleV = "font-size:18px; padding:5px;"
+
+"""
+Signals class
+"""
+class Signals(QObject):
+    asignal = pyqtSignal(str)
+
+    def __init__(self):
+        super(Signals, self).__init__()
+
+    def sendSignal(self):
+        self.asignal.emit('Hi, im a signal')
 
 """
 LabelBlock class
 """
 class labelBlock(QWidget):
     
-    def __init__(self, name="", action=None):
+    def __init__(self, name=""):
         super().__init__()
         self.units = ''
         self.realValue = ''
-        self.action = action
         ''' Layout Manager '''
         self.layout = QGridLayout()
         ''' Graphical Objects '''
@@ -62,13 +73,13 @@ class labelBlock(QWidget):
 """
 SliderBlock class
 """
-class sliderBlock(QWidget):
-    
-    def __init__(self, name="", percent=False, action=None):
-        super().__init__()
+class sliderBlock(QWidget, QObject):
+    asignal = pyqtSignal(str)
+        
+    def __init__(self, name="", percent=False):
+        super(sliderBlock, self).__init__()
 
         ''' '''
-        self.action = action
         self.percent = percent
         self.minValue = 0
         self.maxValue = 100
@@ -78,13 +89,14 @@ class sliderBlock(QWidget):
         self.layout = QGridLayout()
         ''' Graphical Objects '''
         self.name = QPushButton(name)
+        self.userValue = QLineEdit()
         self.name.setStyleSheet(styleH)
         self.name.setFixedWidth(200)
-        self.userValue = QLineEdit()
         self.userValue.setStyleSheet(styleH)
         self.value = QLabel('')
         self.value.setStyleSheet(styleV)
         self.slider = QSlider(Qt.Horizontal)
+        self.slider.setEnabled(False)
         self.minSlider = 0
         self.maxSlider = self.maxValue*self.ratioSlider
         self.sliderValue = self.realValue
@@ -101,7 +113,7 @@ class sliderBlock(QWidget):
         self.layout.addWidget(self.slider, 2, 1)  # Position 2,0 / one cell
         self.setLayout(self.layout)
         
-        ''' Events '''
+        ''' Events '''      
         self.slider.valueChanged.connect(self.sliderChanged)
         self.name.clicked.connect(self.valueChanged)
         
@@ -129,7 +141,7 @@ class sliderBlock(QWidget):
         else:
             return False
         
-    def valueChanged(self):
+    def valueChanged(self, event):
         value = self.userValue.text()
         value2 = value.replace('.','',1)
         value2 = value2.replace('e','',1)
@@ -146,6 +158,8 @@ class sliderBlock(QWidget):
         self.sliderValue = self.realValue
         self.updateDisplay()
         self.slider.setValue(0)
+        self.slider.setEnabled(True)
+        self.asignal.emit('T')
     
     def setPercent(self, value, maxValue=100):
         self.percent = value
@@ -168,16 +182,14 @@ class sliderBlock(QWidget):
     def setUnits(self, units):
         self.units = units
     
-    def sliderChanged(self):
+    def sliderChanged(self, event):
         if(self.percent):
             self.sliderValue = self.realValue * (1 + (float(self.slider.value()) / (100.0) / self.ratioSlider))
             self.sliderValue = np.round(self.sliderValue, decimals=2)
         else:
             self.sliderValue = self.slider.value() / self.ratioSlider
         self.updateDisplay()
-        if(self.action != None):
-            print('ok')
-            self.action()
+        self.asignal.emit('S')
     
     def updateDisplay(self):
         displayValue = self.sliderValue
@@ -194,5 +206,8 @@ class sliderBlock(QWidget):
     
     def getSliderValue(self):
         return self.slider.value()/self.ratioSlider
+    
+    def getRealValue(self):
+        return self.sliderValue
     
    
