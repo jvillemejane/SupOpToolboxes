@@ -11,6 +11,73 @@ import numpy as np
 import control as ct
 
 '''
+Find the power of K just higher than N
+'''
+def higherPowerOfK(N, K):
+    # Finding log of the element
+    lg = int(np.log(N) / np.log(K))
+    return lg + 1
+
+
+'''Photodetection class'''
+class photodetection():
+    
+    def __init__(self):
+        self.RT = 1e6           # resistance de contre-reaction
+        self.Cphd = 70e-12      # capacité de la photodiode
+        self.Re = 1e6           # Resistance entree oscilloscope
+        self.Ce = 120e-12       # Capacite Cables
+        self.wc = 1/(self.RT*self.Cphd);   # pulsation de coupure RT Cphd
+        self.AOP = compALI(1e5, 3e6)
+    
+    def transferFunctionSimple(self):
+        ''' System Model - require control library '''
+        self.req = self.RT * self.Re / (self.RT + self.Re)
+        self.ceq = self.Ce + self.Cphd
+        self.transferFuncS = ct.tf([self.req],[(self.req * self.ceq), 1])
+        return self.transferFuncS
+    
+    def transferFunctionFeedback(self):
+        num_moins = [1];
+        den_moins = [1/self.wc, 1];
+        self.transferFuncF = ct.TransferFunction(num_moins, den_moins)
+        return self.transferFuncF
+ 
+    def transferFunction(self):
+        TF_moins = self.transferFunctionFeedback()
+        
+        ## Action avec iphd
+        num_plus = [self.RT];
+        den_plus = [1/self.wc, 1];
+        TF_plus = ct.TransferFunction(num_plus, den_plus)
+
+        ## Système rebouclé
+        TF_AOP = self.AOP.transferFunction()
+        TF_Vphd = ct.feedback(TF_AOP, TF_moins, -1);
+
+
+        ## Système complet
+        TF_Iphd = TF_plus*TF_Vphd;
+        
+        return TF_Iphd 
+ 
+    def setRt(self, rt):
+        self.RT = rt        
+        self.wc = 1/(self.RT*self.Cphd);   # pulsation de coupure RT Cphd
+ 
+    def setCphd(self, cphd):
+        self.Cphd = cphd        
+        self.wc = 1/(self.RT*self.Cphd);   # pulsation de coupure RT Cphd
+       
+    def setCe(self, Ce):
+        self.Ce = Ce    
+        
+    def setRe(self, re):
+        self.Re = re    
+    
+
+
+'''
 ALI class - component model
 '''
 class compALI():
