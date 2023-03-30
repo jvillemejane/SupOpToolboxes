@@ -8,8 +8,52 @@ Created on Wed Mar 29 15:50:35 2023
 
 import numpy as np
 import control as ct
+from systemSimu import *
+import matplotlib.pyplot as plt
 
 
+phD = photodetection()
+
+sysDemo = systemSimulation()
+
+''' Simulation parameters '''
+samplesT = 1001
+sysDemo.setTimeParams(0, 1, samplesT)
+samplesF = 1001
+freqMax = higherPowerOfK(phD.AOP.getGBW(), 10) + 2
+sysDemo.setFreqParams(0, freqMax, samplesF)
+''' Data '''
+timeData = np.zeros((samplesT, 2))
+timeSignal = np.zeros((samplesT, 2))
+freqData = np.zeros((samplesT, 2))
+freqSignalM = np.zeros((samplesT, 2))
+
+''' Data '''
+aliTF = phD.AOP.transferFunction()
+sysDemo.setModel(aliTF)
+timeData[:,0], timeSignal[:,0] = sysDemo.timeResponse()
+freqData[:,0], freqSignalM[:,0], freqSignalInitP = sysDemo.freqResponse()
+sysTF = phD.transferFunctionSimple()
+sysDemo.setModel(sysTF)
+timeData[:,1], timeSignal[:,1] = sysDemo.timeResponse()
+freqData[:,1], freqSignalM[:,1], freqSigP = sysDemo.freqResponse()
+
+sysCompletTF = phD.transferFunction()
+sysDemo.setModel(sysCompletTF)
+timeData[:,1], timeSignal[:,1] = sysDemo.timeResponse()
+freqData[:,1], freqSignalM[:,1], freqSigP = sysDemo.freqResponse()
+
+plt.figure()
+plt.plot(timeData[:,0], timeSignal[:,0])
+plt.plot(timeData[:,1], timeSignal[:,1])
+
+plt.figure()
+plt.plot(freqData[:,0], 20*np.log10(freqSignalM[:,0]))
+plt.plot(freqData[:,1], 20*np.log10(freqSignalM[:,1]))
+plt.xscale('log')
+
+
+'''
 RT = 1e6;           # resistance de contre-reaction
 Cphd = 70e-12;      # capacité de la photodiode
 wc = 1/(RT*Cphd);   # pulsation de coupure RT Cphd
@@ -54,7 +98,7 @@ mag_Vphd, phase_Vphd, w_Vphd = ct.bode(TF_Vphd, w);
 TF_Iphd = TF_plus*TF_Vphd;
 mag_Iphd, phase_Iphd, w_Iphd = ct.bode(TF_Iphd, w);
 
-'''
+
 %% Modèle équivalent simplifié
 wc
 wu = funitaire*2*pi

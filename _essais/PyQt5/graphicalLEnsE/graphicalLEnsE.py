@@ -368,6 +368,11 @@ class sliderBlock(QWidget, QObject):
         else:
             maxValue = (float(self.userValue.text()) + self.maxSlider) / self.ratioSlider
         return maxValue
+
+    def setValue(self, value):
+        self.sliderValue = value
+        self.userValue.setText(str(value))
+        self.slider.setValue(value)
     
   
     
