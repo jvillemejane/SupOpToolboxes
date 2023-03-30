@@ -146,7 +146,7 @@ class MainWindow(QMainWindow):
         print('model')
         ''' Simulation parameters '''
         samplesT = 1001
-        self.simu.setTimeParams(0, 0.1, samplesT)
+        self.simu.setTimeParams(0, 0.0002, samplesT)
         samplesF = 1001
         freqMax = sS.higherPowerOfK(self.phDsys.AOP.getGBW(), 10) + 2
         self.simu.setFreqParams(0, freqMax, samplesF)
@@ -222,14 +222,16 @@ class MainWindow(QMainWindow):
         self.simu.setModel(sysCompletTF)
         timeData[:,5], timeSignal[:,5] = self.simu.timeResponse()
         freqData[:,5], freqSignalM[:,5], freqSigP = self.simu.freqResponse()
-        
+                
+        freqSignalM[:,4] = freqSignalM[:,4] / 100
+        freqSignalM[:,5] = freqSignalM[:,5] / 100
 
         return timeData, timeSignal, timeDataZ, timeSignalZ, freqData, freqSignalM
     
     def updateGraph(self, timeData, timeSignal, timeDataZ, timeSignalZ, freqData, freqSignalM):
         # Step response
         self.graphT.setData(timeData, timeSignal)
-        ymax = self.gainALI.getMaxValue()+0.1
+        ymax = self.gainALI.getMaxValue()*1.5
         self.graphT.setYRange(-0.1, ymax)
         self.graphT.refreshGraph()
         
