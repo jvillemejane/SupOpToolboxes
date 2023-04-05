@@ -2,7 +2,7 @@
 
 **Toolboxes of functions for physicists in photonics**
 
-*Developed by Institut d'Optique Graduate School / France*
+*Developed by Institut d'Optiqe Graduate School / France*
 
 This project is still **in development**. To contribute, look at the *Collaboration* section.
 
