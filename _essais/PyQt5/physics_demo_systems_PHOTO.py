@@ -88,8 +88,8 @@ class MainWindow(QMainWindow):
         # Center area / Graph
         self.graphT = gL.graph1D('Time dependent')
         self.graphF = gL.graph1D('Freq dependent')
-        self.mainLayout.addWidget(self.graphT, 0, 1, 6, 1)
-        self.mainLayout.addWidget(self.graphF, 6, 1, 6, 1)
+        self.mainLayout.addWidget(self.graphT, 0, 1, 7, 1)
+        self.mainLayout.addWidget(self.graphF, 7, 1, 7, 1)
         # Right Area / Feedback
         self.mainLayout.addWidget(self.labelMeasure, 0, 2)
         self.mainLayout.addWidget(self.reLabel, 1, 2)
@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
         self.mainLayout.addWidget(self.cphdBack, 12, 2, 2,1)
     
         self.mainLayout.setColumnStretch(0, 1)
-        self.mainLayout.setColumnStretch(1, 3)
+        self.mainLayout.setColumnStretch(1, 4)
         self.mainLayout.setColumnStretch(2, 1)
         for k in range(13):
             self.mainLayout.setRowStretch(k, 1)
@@ -118,21 +118,14 @@ class MainWindow(QMainWindow):
         ''' Events '''
         self.gbwALI.asignal.connect(self.updateFC)
         self.gainALI.asignal.connect(self.updateFC)
-        self.reBack.asignal.connect(self.updateFeedback)
-        self.rtBack.asignal.connect(self.updateFeedback)
-        self.cCBack.asignal.connect(self.updateFeedback)
-        self.cphdBack.asignal.connect(self.updateFeedback)
+        self.reBack.asignal.connect(self.updateFC)
+        self.rtBack.asignal.connect(self.updateFC)
+        self.cCBack.asignal.connect(self.updateFC)
+        self.cphdBack.asignal.connect(self.updateFC)
         
         ''' model for simulation '''
         self.simu = sS.systemSimulation()
         self.phDsys = sS.photodetection()
-        
-    def updateFeedback(self, sig):
-        
- 
-        timeData, timeSignal, timeDataZ, timeSignalZ, freqData, freqSignalM = self.updateModel()
-        self.updateGraph(timeData, timeSignal, timeDataZ, timeSignalZ, freqData, freqSignalM)
-    
         
     def updateFC(self, sig):
         self.gbw = self.gbwALI.getRealValue()
@@ -143,7 +136,6 @@ class MainWindow(QMainWindow):
         self.updateGraph(timeData, timeSignal, timeDataZ, timeSignalZ, freqData, freqSignalM)
     
     def updateModel(self):
-        print('model')
         ''' Simulation parameters '''
         samplesT = 1001
         self.simu.setTimeParams(0, 0.0002, samplesT)
