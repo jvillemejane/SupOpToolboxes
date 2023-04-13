@@ -22,16 +22,16 @@ xx, yy = np.meshgrid(x,y) #Nous permet d'obtenir une "grille" 2D à partir de de
 
 #%%  Function to display
 def generate_sine(xx, yy, freq=1, alpha=0):
-    return np.sin(freq*(xx*np.sin(alpha)+yy*np.cos(alpha)))
+    return (1+np.sin(freq*(xx*np.sin(alpha)+yy*np.cos(alpha))))/2
     
 image = generate_sine(xx, yy, freq = 50, alpha=np.pi/12)
 
-#%% Display image
-plt.figure()
+#%%  Display
+image = 127*generate_sine(xx, yy, freq=100, alpha=np.pi/12)
+plt.title("Figure 3D")
 plt.imshow(image)
 
-#%%  FFT of the image
+#%% FFT
 tf_image = np.fft.fftshift(np.fft.fft2(image))
-
 plt.figure()
 plt.imshow(np.abs(tf_image))
