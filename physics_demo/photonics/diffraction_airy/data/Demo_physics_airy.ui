@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1261</width>
-    <height>922</height>
+    <width>1428</width>
+    <height>771</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>600</y>
+      <x>840</x>
+      <y>160</y>
       <width>581</width>
-      <height>311</height>
+      <height>421</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="sectionLayout"/>
@@ -44,9 +44,9 @@
    <widget class="QWidget" name="opticalParams" native="true">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>300</y>
-      <width>401</width>
+      <x>480</x>
+      <y>590</y>
+      <width>491</width>
       <height>171</height>
      </rect>
     </property>
@@ -543,8 +543,8 @@
    <widget class="QWidget" name="cameraParams" native="true">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>170</y>
+      <x>70</x>
+      <y>590</y>
       <width>401</width>
       <height>111</height>
      </rect>
@@ -642,22 +642,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="simulationDisplay">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>590</y>
-      <width>471</width>
-      <height>321</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>true</bool>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QPushButton" name="fileBt">
     <property name="geometry">
      <rect>
@@ -690,6 +674,22 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="simulationDisplay">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>600</y>
+      <width>321</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
