@@ -57,4 +57,5 @@ tf_image_s = np.fft.fftshift(np.fft.fft2(image_s))
 plt.figure()
 plt.imshow(np.log(np.abs(tf_image_s)), cmap='gray')
 plt.title("TF Tramage Carre")
+
 plt.show()
