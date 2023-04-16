@@ -44,7 +44,7 @@ class MainWindow(QMainWindow):
         self.gainALI.setPercent(True, 50)
         self.gbwALI = gL.sliderBlock("GBW ALI")
         self.gbwALI.setUnits('Hz')
-        self.gbwALI.setPercent(True, 50)
+        self.gbwALI.setPercent(True, 70)
         self.fcALI = gL.labelBlock('Cut Freq')
         self.fcALI.setUnits('Hz')
         
@@ -299,7 +299,7 @@ class MainWindow(QMainWindow):
         
         # Frequency response
         self.graphF.setData(freqData, 20*np.log10(freqSignalM))
-        ymax = 20*np.log10(self.gainALI.getMaxValue())+0.1
+        ymax = 20*np.log10(self.gainALI.getMaxValue())+20
         self.graphF.setYRange(-40, ymax)
         self.graphF.refreshGraph(logX=True)        
 
