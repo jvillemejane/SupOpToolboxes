@@ -1,0 +1,14 @@
+[ADR001] NAME
+# Spot
+S[nn]adr:nbr:gpe:mode:nofunc:dim:dim_min:dim_max:r:g:b:w:a:uv: 
+
+# Pan Mode
+M[nn]P:pan:pan_f:
+# Tilt Mode
+M[nn]T:tilt:tilt_f: 
+
+# Strobe Mode
+M[nn]S:strobe:strobe_mode_v:inde:strobe_speed:strobe_min:strobe_max:
+
+# Sound Mode
+M[nn]D:inde:sound:sound_min:sound_max: 

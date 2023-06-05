@@ -1,0 +1,11 @@
+[ADR001] SLS-6_7ch
+S[nn]adr:nbr:gpe:mode:nofunc:dim:dim_min:dim_max:r:g:b:w:a:uv: 
+M[nn]D:inde:sound:sound_min:sound_max: 
+M[nn]M:inde:mode2:nofunc: 
+M[nn]S:strobe:strobe_mode_v:inde:strobe_speed:strobe_min:strobe_max:
+
+# Version 7 canaux
+S[01]129:7:01:002:00:01:000:255:03:04:05:0:0:0:
+M[01]M:0:7:0: 
+M[01]D:0:07:130:189:
+M[01]S:02:010:0:02:010:255:

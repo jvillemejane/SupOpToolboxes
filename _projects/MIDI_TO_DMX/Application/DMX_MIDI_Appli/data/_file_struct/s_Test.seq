@@ -1,0 +1,11 @@
+[SEQ1]
+nn:p1:p2...:pnn:
+
+nn : number of presets included in the sequence (4-8-16-32)
+p1...pnn : value of presets to load
+
+
+
+2 bytes / preset value
+32 preset values / sequence
+if 128k * 1 byte --> 2k sequences in SRAM

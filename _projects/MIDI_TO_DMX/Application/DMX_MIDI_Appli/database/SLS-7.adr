@@ -1,0 +1,19 @@
+[ADR001] SLS-7_10ch
+S[nn]adr:nbr:gpe:mode:nofunc:dim:dim_min:dim_max:r:g:b:w:a:uv: 
+M[nn]D:inde:sound:sound_min:sound_max: 
+M[nn]M:inde:mode2:nofunc: 
+M[nn]S:strobe:strobe_mode_v:inde:strobe_speed:strobe_min:strobe_max:
+
+# Version 10 canaux
+S[01]129:10:01:002:00:01:000:255:03:04:05:06:07:08:
+M[01]M:1:10:0: 
+M[01]D:0:06:001:010:
+M[01]S:02:010:0:02:010:255:
+
+
+// Test via Direct USB
+!X:adr:channels:MODE_ch:MODE_nofunct_val:
+    DIM_ch:DIM_min:DIM_max:DIM_val:R_ch:G_ch:B_ch:
+    R_val:G_val:B_val:W_ch:W_val:A_ch:A_val:UV_ch:UV_val;
+	
+!X:1:10:2:0:1:0:255:200:3:4:5:128:128:0:6:64:7:128:8:32;

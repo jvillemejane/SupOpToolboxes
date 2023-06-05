@@ -1,0 +1,6 @@
+[ADR001] LED_PARTY_RGBW
+S[nn]adr:nbr:gpe:mode:nofunc:dim:dim_min:dim_max:r:g:b:w:a:uv: 
+
+S[01]289:06:01:006:00:05:000:255:01:02:03:04:00:00:
+M[01]D:0:06:001:010:
+M[01]S:00:000:0:06:000:255:

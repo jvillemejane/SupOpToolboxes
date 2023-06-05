@@ -1,0 +1,18 @@
+[ADR001] TMH46_16ch
+S[nn]adr:nbr:gpe:mode:nofunc:dim:dim_min:dim_max:r:g:b:w:a:uv: 
+M[nn]D:inde:sound:sound_min:sound_max: 
+M[nn]M:inde:mode2:nofunc: 
+M[nn]S:strobe:strobe_mode_v:inde:strobe_speed:strobe_min:strobe_max:
+M[nn]P:pan:pan_f:
+M[nn]T:tilt:tilt_f: 
+M[nn]Q:inde:pan_speed: 
+M[nn]U:inde:tilt_speed: 
+
+# Version 7 canaux
+S[01]257:16:01:012:00:4:000:255:6:7:8:9:10:11:
+M[01]M:0:12:0: 
+M[01]S:5:010:0:5:010:249:
+M[01]P:1:0:
+M[01]Q:0:3: 
+M[01]T:2:0: 
+M[01]U:0:3: 

@@ -1,0 +1,43 @@
+[CTRL001] SETUP_TP
+MIDI_1:C:	// controller
+MIDI_2:S:	// sequencer
+MIDI_3:K:	// keyboard
+
+// CONTROLLER Mode Setup
+M[d]type:noteOrCC:value:
+
+d : midi input (1 to 3)
+
+types :
+	- BO = blackout
+	- DI = master Dimmer
+	- AR = All R
+	- AG = All G
+	- AB = All B
+	- AA = All A
+	- AU = All UV
+	- AW = All W
+	- AZ = All RGBAWUV
+
+N : note
+C : CC
+
+// DMX Address Setup preload
+S[d]nnn:sss:
+
+d : midi input (1 to 3)
+nnn: 	note triggering the preset
+sss : 	setup file number (associated to a sss.ctr file)
+
+
+// Preset Note Configuration
+P[x]yyy:nnn:
+
+x : 	midi channel (1 to 16 - if 0 all channels)
+yyy : 	preset file number (associated to a p_yyy.pre file)
+nnn: 	note triggering the preset
+
+
+
+
+

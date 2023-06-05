@@ -1,0 +1,10 @@
+[PRE001]
+G[xx]DIM%:R:G:B:A:W:UV:PAN:TILT:
+
+xx : groupe de spots
+
+
+
+16 bytes / presets
+if 128k * 1 byte --> 8k presets in SRAM
+

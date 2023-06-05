@@ -1,0 +1,18 @@
+[CTRL000] SETUP_TP
+MIDI_1:C:
+MIDI_2:S:
+MIDI_3:K:
+M[1]BO:N:48:
+M[1]DI:C:1:
+M[1]AR:N:44:
+M[1]AG:N:40:
+M[1]AB:N:36:
+M[1]AR:C:2:
+M[1]AG:C:3:
+M[1]AB:C:4:
+M[1]AA:C:5:
+M[1]AW:C:6:
+M[1]AU:C:11:
+M[1]AZ:N:49:
+P[1]1:43:
+P[1]2:39:

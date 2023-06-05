@@ -1,0 +1,49 @@
+[CTRL001] SETUP_TP
+MIDI_1:C:	// controller
+MIDI_2:S:	// sequencer
+MIDI_3:K:	// keyboard
+
+// CONTROLLER Mode Setup
+M[d]type:noteOrCC:value:
+
+d : midi input (1 to 3)
+
+types :
+	- BO = blackout
+	- DI = master Dimmer
+	- AR = All R
+	- AG = All G
+	- AB = All B
+	- AA = All A
+	- AU = All UV
+	- AW = All W
+	- AZ = All RGBAWUV
+	- SB = Internal Sequencer BPM Tempo (CC for value control)
+	- Sn = Int. Seq. n auto trigger note
+	- Tn = Int. Seq. n trigger increment note
+	
+N : note
+C : CC
+
+// Preset Note Configuration
+P[x]yyy:nnn:
+
+x : 	midi channel
+yyy : 	preset file number (associated to a p_yyy.pre file)
+nnn : 	note triggering the preset
+
+// DMX Address Setup loader
+S[x]note:setup:
+
+
+// BPM Min et Max
+B:mmm:MMM:
+
+mmm : 	min value in beat per minute
+MMM : 	max value in beat per minute
+
+// Group Selection for RGBAWUV mode
+G[x]g:note:
+
+g : 	group number
+note : 	note to select the group
