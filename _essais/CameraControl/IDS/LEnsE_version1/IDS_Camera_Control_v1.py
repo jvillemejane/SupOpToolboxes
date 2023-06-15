@@ -83,7 +83,7 @@ class MainWindow(QMainWindow):
         '''
         array = self.camera.get_image()
         X, Y, W, H = self.camera.get_aoi()
-        frame = np.reshape(array,(W, H, -1))
+        frame = np.reshape(array,(H, W, -1))
         frame = cv2.resize(frame, dsize=(self.frameWidth, self.frameHeight), interpolation=cv2.INTER_CUBIC)
         image = QImage(frame, frame.shape[1],frame.shape[0], frame.shape[1], QImage.Format_Grayscale8)
         pmap = QPixmap(image)
