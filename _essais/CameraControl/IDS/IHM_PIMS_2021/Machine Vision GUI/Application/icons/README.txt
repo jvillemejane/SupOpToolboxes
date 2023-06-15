@@ -1,1 +1,0 @@
-All icons are from https://icones8.fr/
