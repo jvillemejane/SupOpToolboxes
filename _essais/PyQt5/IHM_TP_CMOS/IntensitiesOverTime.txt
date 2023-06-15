@@ -1,0 +1,1 @@
+Time(s)	pixel_1_intensity	pixel_2_intensity	pixel_3_intensity	pixel_4_intensity
