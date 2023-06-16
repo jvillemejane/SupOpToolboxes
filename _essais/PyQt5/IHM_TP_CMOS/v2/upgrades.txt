@@ -1,0 +1,26 @@
+Quelques points améliorables :
+         ok       - changement de nom de AOI <-> Camera entière (lors du passage de l'un à l'autre des modes)
+         ok       - le choix d'un seul point de suivi (au centre de la ZOI) ou plusieurs points (4 points par défaut c'est déjà bien)
+         ok       - la possibilité de réinitialiser (sans quitter) les différents graphes
+         ok       - le graphe de l'histogramme de l'image ne se retaille pas tout seul - pas systématiquement en tout cas (contrairement à celui des 4 points)
+         Bof      - peut-être; afficher dans 4 sous-graphes les histogrammes des 4 points - en 1 seul graphe si 1 seul point central
+         ok       - possibilité de modifier le blacklevel (fonction à implémenter dans la biblio camera.py)
+- récupération des informations en 10 bits (et non en 8 bits) - fonction à implémenter dans la biblio camera.py
+
+Petit ajout pour le blacklevel (dans la bibliothèque camera.py), à l'intérieur de la classe ueyeCamera :
+
+    def get_black_level(self):
+        blacklevel = ueye.uint()
+        ueye.is_Blacklevel(self.h_cam, ueye.IS_BLACKLEVEL_CMD_GET_OFFSET, blacklevel, ueye.sizeof(blacklevel))
+        return blacklevel
+    
+    def set_black_level(self, value):
+        blacklevel = ueye.uint(value)
+        ueye.is_Blacklevel(self.h_cam, ueye.IS_BLACKLEVEL_CMD_SET_OFFSET, blacklevel, ueye.sizeof(blacklevel))
+
+
+Pour le passage 8 bits vers 10 ou 12 bits, ca se passe dans l'appel au colormode.
+- 8 bits : ueye.IS_CM_SENSOR_RAW8  (toutes les cameras - je crois, j'ai une 8 bits uniquement dispo chez moi)
+- 10 bits : ueye.IS_CM_SENSOR_RAW10
+- 12 bits : ueye.IS_CM_SENSOR_RAW12
+Il faut tester si la fonction de mise à jour du colormode est autorisée pour 12, 10 puis sinon 8 par défaut, lors de la connexion de la caméra.
