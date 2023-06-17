@@ -78,7 +78,11 @@ class Camera_Widget(QWidget):
         """
         Method used to launch the video.
         """
-        self.timerUpdate.setInterval(int(self.camera.get_frame_rate()))
+        if(self.camera.get_frame_rate() != 0):
+            self.timerTime = 1000.0/(self.camera.get_frame_rate())
+        else:
+            self.timerTime = 500
+        self.timerUpdate.setInterval(int(self.timerTime+100))
         self.timerUpdate.timeout.connect(self.refreshGraph)
         self.timerUpdate.start()    
 
@@ -144,6 +148,8 @@ class Camera_Widget(QWidget):
         self.max_height = int(self.camera.get_sensor_max_height())
 
         self.camera.set_exposure(15)
+        self.camera.set_frame_rate(20)
+        self.timerTime = 1000.0 / 20.0
         
         if self.colormode == "MONO8":
             self.camera.set_colormode(ueye.IS_CM_MONO8)

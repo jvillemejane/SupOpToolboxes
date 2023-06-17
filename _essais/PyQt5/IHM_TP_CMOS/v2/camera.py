@@ -270,7 +270,7 @@ class uEyeCamera:
         ueye.is_GetFrameTimeRange (self.h_cam, min_t, max_t, step_t)
         return [min_t.value, max_t.value, step_t.value]
 
-    def set_framerate(self, fps):
+    def set_frame_rate(self, fps):
         set_fps = ueye.double(fps)
         new_fps = ueye.double()
         ueye.is_SetFrameRate(self.h_cam, set_fps, new_fps)

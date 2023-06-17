@@ -21,13 +21,14 @@ class MainWidget(QWidget):
         Initialisation of the main Widget.
         """
         super().__init__()
+        self.interval = 200
 
         # Create the several widgets
         self.cameraWidget = Camera_Widget()
-        self.chartWidget = Chart_Widget(measurementInterval = 1000)
+        self.chartWidget = Chart_Widget(measurementInterval = self.interval)
         self.settingsWidget = Settings_Widget()
         self.cameraHistogramWidget = Histogram_Widget(histogramTitle = "Camera's histogram", FrameOrLists =  "frame")
-        self.chartHistogramWidget = Histogram_Widget(histogramTitle = "Pixels' histogram", FrameOrLists ="lists", measurementInterval = 1000)
+        self.chartHistogramWidget = Histogram_Widget(histogramTitle = "Pixels' histogram", FrameOrLists ="lists", measurementInterval = self.interval)
         
 
         # Create and add the widgets into the layout
