@@ -18,7 +18,7 @@ import control
 
 import numpy as np
 from pyqtgraph import PlotWidget, plot, mkPen
-from signal_processing.signal_processing import generate_sinus_time
+#from signal_processing.signal_processing import generate_sinus_time
 
 import sys  # We need sys so that we can pass argv to QApplication
 import os
