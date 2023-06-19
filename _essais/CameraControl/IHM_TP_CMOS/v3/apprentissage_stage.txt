@@ -1,0 +1,35 @@
+Formation "initiale" python (bases + classes + tkinter) : 
+	Jason CHAMPAGNE : 
+		Youtube : https://www.youtube.com/playlist?list=PLrSOXFDHBtfHg8fWBd7sKPxEmahwyVBkC
+		Github  : https://github.com/jasonchampagne
+
+Fonctions pour les gens sans scrupules :
+	AI : https://chat.openai.com/
+
+Formation PyQt : 
+	Youtube            : https://www.youtube.com/watch?v=Vde5SH8e1OQ&list=PLzMcBGfZo4-lB8MZfHPLTEHO9zJDDLpYj&ab_channel=TechWithTim
+	Lancer QT-designer : qt5-tools designer dans le cmd prompt
+ 	Convertir ui in py : pyuic5 -x untitled.ui -o test.py (dans le bon file)
+	Resizable windows  : https://www.youtube.com/watch?v=i_Z-1F_U_yw (Layouts)
+	Add Cam to window  : https://gist.github.com/docPhil99/ca4da12c9d6f29b9cea137b617c7b8b1
+	"Useful"		   : https://stackoverflow.com/questions/8814452/pyqt-how-to-add-separate-ui-widget-to-qmainwindow
+	More Useful        : https://www.pythonguis.com/tutorials/creating-your-first-pyqt-window/
+	Update Plot		   : https://www.pythonguis.com/faq/pyqtgraph-plotting-over-time/
+
+Formation OpenCV : 
+	Download  : https://opencv.org/
+	Installer : https://solarianprogrammer.com/2016/09/17/install-opencv-3-with-python-3-on-windows/
+
+Utiliser Ueye sur python :
+	Download   : https://pypi.org/project/pyueye/
+	Installer  : pip install pyueye (dans le prompt)
+	Comprendre : https://en.ids-imaging.com/techtipp-details/simple-live-image-acquisition-with-the-python-interface-pyueye.html
+
+Autres :
+	Graphique dans PyQt : https://www.developpez.net/forums/d2086321/autres-langages/python/gui/pyqt/integrer-graph-matplotlib-qwidget/
+	Resizable image 	: https://stackoverflow.com/questions/21802868/python-how-to-resize-raster-image-with-pyqt
+						: https://stackoverflow.com/questions/15204470/pyqt-how-to-get-a-widgets-dimensions
+
+
+Beauté :
+	https://doc.qt.io/qtforpython-6/overviews/stylesheet-examples.html
